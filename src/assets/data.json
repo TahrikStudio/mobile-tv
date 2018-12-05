@@ -1,0 +1,14 @@
+{
+	"externalScripts": [],
+	"categories": [
+		{
+			"name": "Malayalam News",
+			"channels": [
+				{
+					"name": "MediaOne",
+					"youtube-link": "youtube-link"
+				}
+			]
+		}
+	]
+}
