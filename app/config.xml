@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.libreappfoundation.mobiletv" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MobileTV</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="niyasc@hotmail.com" href="https://theopensourcefeed.com">
+        LibreAppFoundation
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <icon src="res/mipmap-mdpi/mobiletv.png" density="mdpi" />
+        <icon src="res/mipmap-hdpi/mobiletv.png" density="hdpi" />
+        <icon src="res/mipmap-xhdpi/mobiletv.png" density="xhdpi" />
+        <icon src="res/mipmap-xxhdpi/mobiletv.png" density="xxhdpi" />
+        <icon src="res/mipmap-xxxhdpi/mobiletv.png" density="xxxhdpi" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <engine name="ios" spec="^4.5.5" />
+    <engine name="android" spec="^7.1.4" />
+    <engine name="browser" spec="^5.0.4" />
+</widget>

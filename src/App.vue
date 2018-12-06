@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header>
+    <header v-if="$route.name != 'Loader'">
       <h1>MobileTV</h1>
     </header>
     <router-view/>
@@ -40,17 +40,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 60px;
 }
 h1, h2 {
   font-weight: normal;
 }
 h1 {
-  margin-bottom: 0
+  margin-bottom: 0;
+  margin-top: 0
 }
 header {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
   margin-bottom: 2em;
+}
+a {
+  color: rgb(0,122,255);
 }
 body {
   max-width: 720px;

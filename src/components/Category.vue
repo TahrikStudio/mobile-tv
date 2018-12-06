@@ -41,16 +41,14 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b883;
-}
 .channels a{
-  background: #42b883;
-  color: white;
   padding: .5em 1em;
   display: block;
   font-weight: bold;
   text-decoration: none;
   margin: .5em 1em;
+  border: 1px solid white;
+  background: rgb(0, 122, 255);
+  color: white;
 }
 </style>

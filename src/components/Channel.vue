@@ -38,7 +38,4 @@ export default {
 h2 {
   margin-top: 0;
 }
-a {
-  color: #42b883
-}
 </style>
