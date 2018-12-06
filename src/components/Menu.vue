@@ -9,12 +9,8 @@
 </template>
 
 <script>
-import json from '../assets/data.json'
 export default {
   name: 'Menu',
-  mounted () {
-    this.$store.commit('setData', json)
-  },
   computed: {
     categories () {
       return this.$store.state.data.categories || []

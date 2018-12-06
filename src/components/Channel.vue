@@ -1,6 +1,14 @@
 <template>
   <div>
-    {{channel.name}}
+    <router-link :to="{name: 'Menu'}">
+      Home
+    </router-link>
+    ❯
+    <router-link :to="{name: 'Category', params: {categoryId: categoryId}}">
+     {{category.name}}
+   </router-link>
+    <h2>{{channel.name}}</h2>
+    <iframe :src="channel.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </template>
 
@@ -15,6 +23,9 @@ export default {
     channelId () {
       return this.$route.params.channelId
     },
+    category () {
+      return this.$store.state.data.categories[this.categoryId]
+    },
     channel () {
       return this.$store.state.data.categories[this.categoryId].channels[this.channelId]
     }
@@ -24,18 +35,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+h2 {
+  margin-top: 0;
 }
 a {
-  color: #42b983;
+  color: #42b883
 }
 </style>

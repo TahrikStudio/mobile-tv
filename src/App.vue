@@ -1,14 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <header>
+      <h1>MobileTV</h1>
+    </header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import json from './assets/data.json'
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted () {
+    this.$store.commit('setData', json)
+  }
 }
+
 </script>
 
 <style>
@@ -17,7 +25,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+}
+h1, h2 {
+  font-weight: normal;
+}
+h1 {
+  margin-bottom: 0
+}
+header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2em;
+}
+body {
+  max-width: 720px;
+  margin: auto;
 }
 </style>

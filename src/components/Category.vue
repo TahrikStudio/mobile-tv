@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h1>{{category.name}}</h1>
-    <div v-bind:key="index" v-for="(channel, index) in category.channels">
-      <router-link tag="li" :to="{name: 'Channel', params: {categoryId: categoryId, channelId: index}}">
-        <a>{{channel.name}}</a>
+    <router-link :to="{name: 'Menu'}">
+      Home
+    </router-link>
+    <h2>{{category.name}}</h2>
+    <div v-bind:key="index" class="channels" v-for="(channel, index) in category.channels">
+      <router-link :to="{name: 'Channel', params: {categoryId: categoryId, channelId: index}}">
+        {{channel.name}}
       </router-link>
     </div>
   </div>
@@ -18,7 +21,7 @@ export default {
       return this.$route.params.categoryId
     },
     category () {
-      return this.$store.state.data.categories[this.categoryId]
+      return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId] : {channels: []}
     }
   }
 }
@@ -26,18 +29,27 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+h2 {
+  margin-top: 0;
 }
 ul {
   list-style-type: none;
   padding: 0;
+  text-align: left;
 }
 li {
   display: inline-block;
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #42b883;
+}
+.channels a{
+  background: #42b883;
+  color: white;
+  padding: .5em 1em;
+  display: block;
+  font-weight: bold;
+  text-decoration: none
 }
 </style>
