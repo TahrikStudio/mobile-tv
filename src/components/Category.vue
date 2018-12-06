@@ -50,6 +50,7 @@ a {
   padding: .5em 1em;
   display: block;
   font-weight: bold;
-  text-decoration: none
+  text-decoration: none;
+  margin: .5em 1em;
 }
 </style>

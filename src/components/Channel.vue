@@ -24,10 +24,10 @@ export default {
       return this.$route.params.channelId
     },
     category () {
-      return this.$store.state.data.categories[this.categoryId]
+      return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId] : {name: ''}
     },
     channel () {
-      return this.$store.state.data.categories[this.categoryId].channels[this.channelId]
+      return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId].channels[this.channelId] : {name: ''}
     }
   }
 }
