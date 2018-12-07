@@ -4,8 +4,11 @@
       Home
     </router-link>
     <h2>{{category.name}}</h2>
-    <div v-bind:key="index" class="channels" v-for="(channel, index) in category.channels">
+    <div v-bind:key="index" class="channel" v-for="(channel, index) in category.channels">
       <router-link :to="{name: 'Channel', params: {categoryId: categoryId, channelId: index}}">
+        <img v-if="channel.logo" :src="channel.logo">
+        <img v-else src="../assets/logo/placeholder.png">
+        <br/>
         {{channel.name}}
       </router-link>
     </div>
@@ -41,14 +44,25 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-.channels a{
-  padding: .5em 1em;
+.channel {
+  display: inline-block;
+  width: 33%;
+  margin: 1em 0;
+}
+.channel img {
   display: block;
-  font-weight: bold;
-  text-decoration: none;
-  margin: .5em 1em;
-  border: 1px solid white;
-  background: rgb(0, 122, 255);
-  color: white;
+  margin: auto;
+}
+
+@media (max-width: 400px) {
+  .channel {
+    width: 50%;
+  }
+}
+
+@media (max-width: 270px) {
+  .channel {
+    width: 100%;
+  }
 }
 </style>

@@ -17,11 +17,11 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon src="res/mipmap-mdpi/mobiletv.png" density="mdpi" />
-        <icon src="res/mipmap-hdpi/mobiletv.png" density="hdpi" />
-        <icon src="res/mipmap-xhdpi/mobiletv.png" density="xhdpi" />
-        <icon src="res/mipmap-xxhdpi/mobiletv.png" density="xxhdpi" />
-        <icon src="res/mipmap-xxxhdpi/mobiletv.png" density="xxxhdpi" />
+        <icon density="mdpi" src="res/mipmap-mdpi/mobiletv.png" />
+        <icon density="hdpi" src="res/mipmap-hdpi/mobiletv.png" />
+        <icon density="xhdpi" src="res/mipmap-xhdpi/mobiletv.png" />
+        <icon density="xxhdpi" src="res/mipmap-xxhdpi/mobiletv.png" />
+        <icon density="xxxhdpi" src="res/mipmap-xxxhdpi/mobiletv.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

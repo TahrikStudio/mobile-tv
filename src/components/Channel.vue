@@ -8,7 +8,7 @@
      {{category.name}}
    </router-link>
     <h2>{{channel.name}}</h2>
-    <iframe :src="channel.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe class="loader" :src="channel.url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
 </template>
 
@@ -37,5 +37,12 @@ export default {
 <style scoped>
 h2 {
   margin-top: 0;
+}
+.loader {
+  background: url('../assets/meta/loading.gif');
+  background-size: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #eee;
 }
 </style>

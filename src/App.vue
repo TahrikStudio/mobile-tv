@@ -9,7 +9,7 @@
 
 <script>
 import axios from 'axios'
-import json from './assets/data.json'
+import json from './assets/data/data.json'
 
 const STORAGE_KEY = 'mobile-tv-json'
 
@@ -23,7 +23,7 @@ export default {
 
     let _self = this
     // Try to load remote data, save it on local
-    axios.get('https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/remote.json').then(function (response) {
+    axios.get('https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/data/remote.json').then(function (response) {
       _self.$store.commit('setData', response.data)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(response.data))
     }).catch(function (err) {
@@ -45,12 +45,11 @@ h1, h2 {
   font-weight: normal;
 }
 h1 {
-  margin-bottom: 0;
-  margin-top: 0
+  margin-bottom: 0
 }
 header {
   border-bottom: 1px solid #ddd;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
 }
 a {
   color: rgb(0,122,255);

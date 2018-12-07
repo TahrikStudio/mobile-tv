@@ -1,0 +1,46 @@
+{
+	"externalScripts": [],
+	"categories": [
+		{
+			"name": "Malayalam News",
+			"channels": [
+				{
+					"name": "MediaOne",
+					"url": "https://www.youtube.com/embed/jqlTLLbc4YU",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.png"
+				},
+				{
+					"name": "Asianet News",
+					"url": "https://www.youtube.com/embed/qsP3Y4hHyeM",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/asianet-news.png"
+				},
+				{
+					"name": "Manorama News",
+					"url": "https://www.youtube.com/embed/_dLvcprbEg4",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/manorama-news.png"
+				},
+				{
+					"name": "Mathrubhumi News",
+					"url": "https://www.youtube.com/embed/eZlAJF6Io8s",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
+				},
+				{
+					"name": "Mangalam News",
+					"url": "https://www.youtube.com/embed/Doz40nFpAU4",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
+				},
+				{
+					"name": "People TV",
+					"url": "https://www.youtube.com/embed/KuzRYkNBWLQ",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
+				},
+				{
+					"name": "News 18 Kerala",
+					"url": "https://www.youtube.com/embed/2oF5MrvYIEM",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
+				}
+
+			]
+		}
+	]
+}
