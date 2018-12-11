@@ -39,10 +39,11 @@
 					"url": "https://www.youtube.com/embed/2oF5MrvYIEM",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
 				},
-        {
-          "name": "Channel 24",
-          "url": "https://www.youtube.com/embed/wOzL81oCzKU"
-        }
+				{
+					"name": "Channel 24",
+					"url": "https://www.youtube.com/embed/nhlkLwyYD7s",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
+				}
 
 			]
 		}

@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <header v-if="$route.name != 'Loader'">
-      <h1>MobileTV</h1>
-    </header>
     <router-view/>
   </div>
 </template>
@@ -43,19 +40,40 @@ export default {
 }
 h1, h2 {
   font-weight: normal;
+  display: inline;
 }
 h1 {
   margin-bottom: 0
+}
+h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 header {
   border-bottom: 1px solid #ddd;
   margin-bottom: 3em;
 }
 a {
-  color: rgb(0,122,255);
+  color: white;
+  text-decoration: none;
 }
 body {
   max-width: 720px;
   margin: auto;
+  background: #173f4f;
+  color: #35b9ab;
+}
+.nav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1em;
+  margin-bottom: 5vh;
+}
+#back {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0 .5em;
+  margin-right: 1em;
+  float: left;
 }
 </style>
