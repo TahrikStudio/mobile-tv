@@ -7,9 +7,7 @@
     <author email="niyasc@hotmail.com" href="https://theopensourcefeed.com">
         LibreAppFoundation
     </author>
-
     <preference name="Fullscreen" value="true" />
-
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
