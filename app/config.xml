@@ -2,11 +2,14 @@
 <widget id="com.libreappfoundation.mobiletv" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MobileTV</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A simple app for streaming live news channels (especially, malayalam channels from youtube)
     </description>
     <author email="niyasc@hotmail.com" href="https://theopensourcefeed.com">
         LibreAppFoundation
     </author>
+
+    <preference name="Fullscreen" value="true" />
+
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -29,7 +32,8 @@
     </platform>
     <splash src="res/splash.png" />
     <preference name="SplashMaintainAspectRatio" value="true" />
+    <engine name="android" spec="^7.1.4" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <engine name="android" spec="^7.1.4" />
+    <plugin name="cordova-plugin-screen-orientation" spec="^3.0.1" />
 </widget>

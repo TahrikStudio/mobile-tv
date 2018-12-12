@@ -21,23 +21,28 @@
 				},
 				{
 					"name": "Mathrubhumi News",
-					"url": "https://www.youtube.com/embed/eZlAJF6Io8s",
+					"url": "https://www.youtube.com/embed/VgmMHjRZse8",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
 				},
 				{
-					"name": "Mangalam News",
-					"url": "https://www.youtube.com/embed/Doz40nFpAU4",
-					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
+					"name": "News 18 Kerala",
+					"url": "https://www.youtube.com/embed/f5YmTSuINHw",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
 				},
+				{
+					"name": "Reporter Live",
+					"url": "https://www.youtube.com/embed/H1lhk29Bg2w",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/reporter.png"
+				}
 				{
 					"name": "People TV",
 					"url": "https://www.youtube.com/embed/KuzRYkNBWLQ",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
 				},
 				{
-					"name": "News 18 Kerala",
-					"url": "https://www.youtube.com/embed/2oF5MrvYIEM",
-					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
+					"name": "Mangalam News",
+					"url": "https://www.youtube.com/embed/pKdC1gN4Uyg",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
 				},
 				{
 					"name": "Channel 24",

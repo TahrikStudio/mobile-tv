@@ -26,6 +26,11 @@ export default {
     }).catch(function (err) {
       console.log(err)
     })
+
+    // load scripts
+    let script = document.createElement('script')
+    script.setAttribute('src', 'cordova.js')
+    document.head.appendChild(script)
   }
 }
 
@@ -51,10 +56,6 @@ h2 {
   font-size: 1.2rem;
   text-transform: uppercase;
 }
-header {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 3em;
-}
 a {
   color: white;
   text-decoration: none;
@@ -68,7 +69,6 @@ body {
 .nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1em;
-  margin-bottom: 5vh;
 }
 #back {
   border: 1px solid rgba(255, 255, 255, 0.1);

@@ -6,9 +6,8 @@
       </router-link>
       <h2>{{channel.name}}</h2>
     </div>
-    <div class="video-wrapper">
-      <iframe id="video-frame" class="loader" :src="channel.url + '?enablejsapi=1'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" width="100%" height="100%" allowfullscreen></iframe>
-    </div>
+    <iframe id="video-frame" class="loader" :src="channel.url + '?enablejsapi=1&rel=0'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <a id="external" @click="fullscreen" v-show="loaded">Play Fullscreen</a>
   </div>
 </template>
 
@@ -16,6 +15,11 @@
 
 export default {
   name: 'Channel',
+  data: function () {
+    return {
+      loaded: false
+    }
+  },
   computed: {
     categoryId () {
       return this.$route.params.categoryId
@@ -30,8 +34,32 @@ export default {
       return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId].channels[this.channelId] : {name: ''}
     }
   },
+  methods: {
+    fullscreen: function () {
+      var iframe = document.getElementById('video-frame')
+      var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
+      if (requestFullScreen) {
+        requestFullScreen.bind(iframe)()
+      }
+    }
+  },
   mounted: function () {
-    console.log('mounted')
+    let _self = this
+
+    document.addEventListener('webkitfullscreenchange', toggleFullScreen, false)
+    document.addEventListener('mozfullscreenchange', toggleFullScreen, false)
+    document.addEventListener('fullscreenchange', toggleFullScreen, false)
+    document.addEventListener('MSFullscreenChange', toggleFullScreen, false)
+
+    function toggleFullScreen (event) {
+      var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
+
+      if (fullscreenElement != null) {
+        screen.orientation.lock('landscape')
+      } else {
+        screen.orientation.lock('portrait')
+      }
+    }
 
     function initializeYT () {
       var tag = document.createElement('script')
@@ -46,27 +74,26 @@ export default {
         events: {
           'onReady': onPlayerReady
         }
-      });
-      console.log (player)
-      function onPlayerReady(event) {
-        console.log('inside autoplay')
+      })
+      console.log(player)
+      function onPlayerReady (event) {
         event.target.playVideo()
+        _self.loaded = true
       }
     }
 
     function loader () {
-      if (typeof (YT) === 'undefined' || typeof (YT.Player) == 'undefined') {
-        console.log ('not loader')
+      /* global YT */
+      /* eslint no-undef: ["error", { "typeof": true }] */
+      if (typeof (YT) === 'undefined' || typeof (YT.Player) === 'undefined') {
         initializeYT()
         setTimeout(loader, 500)
       } else {
-        console.log('loaded')
-        takeControl ()
+        takeControl()
       }
     }
     loader()
   }
-
 
 }
 </script>
@@ -83,7 +110,7 @@ h2 {
   background-position: center;
 }
 iframe {
-  margin-top: 20vh;
+  margin-top: 15vh;
 }
 a#external {
   background: #35b9ab;
@@ -91,18 +118,5 @@ a#external {
   color: #173f4f;
   display: block;
   margin-top: 5vh
-}
-.video-wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
-  height: 0;
-}
-.video-wrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 </style>
