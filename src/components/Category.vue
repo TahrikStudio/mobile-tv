@@ -46,17 +46,21 @@ li {
 }
 .channel {
   display: inline-block;
-  width: 33%;
-  margin: 1em 0;
+  width: 25%;
+  padding: .1em;
+  margin: .5em .5em;
+  border: 1px solid rgba(255, 255, 255, 0.1)
 }
 .channel img {
   display: block;
   margin: auto;
+  max-width: 80%;
+  max-height: 84px
 }
 
-@media (max-width: 400px) {
+@media (max-width: 350px) {
   .channel {
-    width: 50%;
+    width: 40%;
   }
 }
 

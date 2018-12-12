@@ -56,8 +56,10 @@ export default {
 
       if (fullscreenElement != null) {
         screen.orientation.lock('landscape')
+        if (window.plugins) window.plugins.insomnia.keepAwake()
       } else {
         screen.orientation.lock('portrait')
+        if (window.plugins) window.plugins.insomnia.allowSleepAgain()
       }
     }
 

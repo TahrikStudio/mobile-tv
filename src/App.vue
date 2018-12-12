@@ -31,6 +31,30 @@ export default {
     let script = document.createElement('script')
     script.setAttribute('src', 'cordova.js')
     document.head.appendChild(script)
+
+    document.addEventListener('deviceready', function () {
+      console.log('device ready')
+      // define backbutton functionality
+      document.addEventListener('backbutton', onBackKeyDown, false)
+    }, false)
+
+    function onBackKeyDown (e) {
+      e.preventDefault()
+      console.log('pressed backbutton')
+      let back = document.getElementById('back')
+      if (back) {
+        back.click()
+      } else {
+        // Exit app
+        if (navigator.app) {
+          navigator.app.exitApp()
+        } else if (navigator.device) {
+          navigator.device.exitApp()
+        } else {
+          window.close()
+        }
+      }
+    }
   }
 }
 
