@@ -41,27 +41,45 @@ export default {
       if (requestFullScreen) {
         requestFullScreen.bind(iframe)()
       }
-    }
-  },
-  mounted: function () {
-    let _self = this
-
-    document.addEventListener('webkitfullscreenchange', toggleFullScreen, false)
-    document.addEventListener('mozfullscreenchange', toggleFullScreen, false)
-    document.addEventListener('fullscreenchange', toggleFullScreen, false)
-    document.addEventListener('MSFullscreenChange', toggleFullScreen, false)
-
-    function toggleFullScreen (event) {
+    },
+    removeEventListeners: function () {
+      // Why keep multiple listeners a time for same action.
+      document.removeEventListener('webkitfullscreenchange', this.toggleFullScreen)
+      document.removeEventListener('mozfullscreenchange', this.toggleFullScreen)
+      document.removeEventListener('fullscreenchange', this.toggleFullScreen)
+      document.removeEventListener('MSFullscreenChange', this.toggleFullScreen)
+    },
+    toggleFullScreen: function (event) {
       var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
 
       if (fullscreenElement != null) {
         screen.orientation.lock('landscape')
         if (window.plugins) window.plugins.insomnia.keepAwake()
+        /* global admob */
+        /* eslint no-undef: ["error", { "typeof": true }] */
+        if (window.admob) admob.banner.hide()
       } else {
         screen.orientation.lock('portrait')
         if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+        /* global admob */
+        /* eslint no-undef: ["error", { "typeof": true }] */
+        if (window.admob) admob.banner.show()
       }
+    },
+    stopVideo: function () {
+      if (this.player) this.player.stopVideo()
     }
+  },
+  mounted: function () {
+    this.removeEventListeners()
+
+    let _self = this
+
+    document.addEventListener('webkitfullscreenchange', this.toggleFullScreen)
+    document.addEventListener('mozfullscreenchange', this.toggleFullScreen)
+    document.addEventListener('fullscreenchange', this.toggleFullScreen)
+    document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
+    window.addEventListener('blur', this.stopVideo)
 
     function initializeYT () {
       var tag = document.createElement('script')
@@ -72,12 +90,12 @@ export default {
     }
 
     function takeControl () {
-      var player = new YT.Player('video-frame', {
+      _self.player = new YT.Player('video-frame', {
         events: {
           'onReady': onPlayerReady
         }
       })
-      console.log(player)
+      console.log(_self.player)
       function onPlayerReady (event) {
         event.target.playVideo()
         _self.loaded = true

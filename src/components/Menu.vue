@@ -9,6 +9,9 @@
           {{category.name}}
         </router-link>
       </div>
+      <div class="category">
+        <a @click="exitApp">Leave App</a>
+      </div>
     </div>
   </div>
 </template>
@@ -19,6 +22,17 @@ export default {
   computed: {
     categories () {
       return this.$store.state.data.categories || []
+    }
+  },
+  methods: {
+    exitApp: function () {
+      if (navigator.app) {
+        navigator.app.exitApp()
+      } else if (navigator.device) {
+        navigator.device.exitApp()
+      } else {
+        window.close()
+      }
     }
   },
   data () {
@@ -53,5 +67,6 @@ li {
   border: 1px solid white;
   color: white;
   border-radius: 10px 10px;
+  cursor: pointer;
 }
 </style>

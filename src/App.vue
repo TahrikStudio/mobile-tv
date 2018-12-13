@@ -12,6 +12,47 @@ const STORAGE_KEY = 'mobile-tv-json'
 
 export default {
   name: 'App',
+  methods: {
+    onDeviceReady: function () {
+      console.log('device ready')
+
+      document.removeEventListener('deviceready', this.onDeviceReady)
+
+      // define backbutton functionality
+      document.addEventListener('backbutton', this.onBackKeyDown, false)
+
+      // Integrate AdMobAds
+      /* global admob */
+      /* eslint no-undef: ["error", { "typeof": true }] */
+      if (typeof admob !== 'undefined') {
+        console.log('admob active')
+        admob.banner.config({
+          id: 'ca-app-pub-6380671811722843/7999087406',
+          isTesting: false,
+          autoShow: true
+        })
+        admob.banner.prepare()
+        admob.banner.show()
+      }
+    },
+    onBackKeyDown: function (e) {
+      e.preventDefault()
+      console.log('pressed backbutton')
+      let back = document.getElementById('back')
+      if (back) {
+        back.click()
+      } else {
+        // Exit app
+        if (navigator.app) {
+          navigator.app.exitApp()
+        } else if (navigator.device) {
+          navigator.device.exitApp()
+        } else {
+          window.close()
+        }
+      }
+    }
+  },
   mounted () {
     let localStorage = window.localStorage
     let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || json
@@ -32,44 +73,7 @@ export default {
     script.setAttribute('src', 'cordova.js')
     document.head.appendChild(script)
 
-    document.addEventListener('deviceready', function () {
-      console.log('device ready')
-
-      // define backbutton functionality
-      document.addEventListener('backbutton', onBackKeyDown, false)
-
-      // Integrate AdMobAds
-      /* global admob */
-      /* eslint no-undef: ["error", { "typeof": true }] */
-      if (typeof admob !== 'undefined') {
-        console.log('admob active')
-        admob.banner.config({
-          id: 'ca-app-pub-6380671811722843/7999087406',
-          isTesting: true,
-          autoShow: true
-        })
-        admob.banner.prepare()
-        admob.banner.show()
-      }
-    }, false)
-
-    function onBackKeyDown (e) {
-      e.preventDefault()
-      console.log('pressed backbutton')
-      let back = document.getElementById('back')
-      if (back) {
-        back.click()
-      } else {
-        // Exit app
-        if (navigator.app) {
-          navigator.app.exitApp()
-        } else if (navigator.device) {
-          navigator.device.exitApp()
-        } else {
-          window.close()
-        }
-      }
-    }
+    document.addEventListener('deviceready', this.onDeviceReady)
   }
 }
 
