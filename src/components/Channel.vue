@@ -48,6 +48,7 @@ export default {
       document.removeEventListener('mozfullscreenchange', this.toggleFullScreen)
       document.removeEventListener('fullscreenchange', this.toggleFullScreen)
       document.removeEventListener('MSFullscreenChange', this.toggleFullScreen)
+      document.removeEventListener('pause', this.stopVideo)
     },
     toggleFullScreen: function (event) {
       var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
@@ -79,7 +80,7 @@ export default {
     document.addEventListener('mozfullscreenchange', this.toggleFullScreen)
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
-    window.addEventListener('blur', this.stopVideo)
+    document.addEventListener('pause', this.stopVideo)
 
     function initializeYT () {
       var tag = document.createElement('script')
