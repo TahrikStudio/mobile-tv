@@ -48,6 +48,10 @@
 					"name": "Channel 24",
 					"url": "https://www.youtube.com/embed/nhlkLwyYD7s",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
+				},
+				{
+					"name": "Demo",
+					"url": "https://www.youtube.com/embed/nhlkLwyYD7s"
 				}
 
 			]
