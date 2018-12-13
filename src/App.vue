@@ -34,8 +34,23 @@ export default {
 
     document.addEventListener('deviceready', function () {
       console.log('device ready')
+
       // define backbutton functionality
       document.addEventListener('backbutton', onBackKeyDown, false)
+
+      // Integrate AdMobAds
+      /* global admob */
+      /* eslint no-undef: ["error", { "typeof": true }] */
+      if (typeof admob !== 'undefined') {
+        console.log('admob active')
+        admob.banner.config({
+          id: 'ca-app-pub-6380671811722843/7999087406',
+          isTesting: true,
+          autoShow: true
+        })
+        admob.banner.prepare()
+        admob.banner.show()
+      }
     }, false)
 
     function onBackKeyDown (e) {
