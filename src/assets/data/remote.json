@@ -26,12 +26,12 @@
 				},
 				{
 					"name": "News 18 Kerala",
-					"url": "https://www.youtube.com/embed/f5YmTSuINHw",
+					"url": "https://www.youtube.com/embed/SL2Sf1FbGPo",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
 				},
 				{
 					"name": "Reporter Live",
-					"url": "https://www.youtube.com/embed/H1lhk29Bg2w",
+					"url": "https://www.youtube.com/embed/uhhIcJZVjfc",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/reporter.png"
 				},
 				{
@@ -48,10 +48,6 @@
 					"name": "Channel 24",
 					"url": "https://www.youtube.com/embed/nhlkLwyYD7s",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
-				},
-				{
-					"name": "Demo",
-					"url": "https://www.youtube.com/embed/nhlkLwyYD7s"
 				}
 
 			]
