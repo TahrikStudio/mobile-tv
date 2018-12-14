@@ -6,7 +6,9 @@
       </router-link>
       <h2>{{channel.name}}</h2>
     </div>
-    <iframe id="video-frame" class="loader" :src="channel.url + '?enablejsapi=1&rel=0'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="video-responsive">
+      <iframe id="video-frame" class="loader" :src="channel.url + '?enablejsapi=1&rel=0'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
     <a id="external" @click="fullscreen" v-show="loaded">Play Fullscreen</a>
   </div>
 </template>
@@ -130,8 +132,19 @@ h2 {
   background-repeat: no-repeat;
   background-position: center;
 }
-iframe {
-  margin-top: 15vh;
+.video-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+  margin-top: 10vh;
+}
+.video-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
 }
 a#external {
   background: #35b9ab;

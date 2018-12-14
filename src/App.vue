@@ -25,14 +25,15 @@ export default {
       /* global admob */
       /* eslint no-undef: ["error", { "typeof": true }] */
       if (typeof admob !== 'undefined') {
-        console.log('admob active')
-        admob.banner.config({
-          id: 'ca-app-pub-6380671811722843/7999087406',
-          isTesting: false,
-          autoShow: true
-        })
-        admob.banner.prepare()
-        admob.banner.show()
+        setTimeout(function () {
+          admob.banner.config({
+            id: 'ca-app-pub-6380671811722843/7999087406',
+            isTesting: false,
+            autoShow: true
+          })
+          admob.banner.prepare()
+          admob.banner.show()
+        }, 500)
       }
     },
     onBackKeyDown: function (e) {
