@@ -6,8 +6,14 @@
       </router-link>
       <h2>{{channel.name}}</h2>
     </div>
-    <div class="video-responsive">
-      <iframe id="video-frame" class="loader" :src="channel.url + '?enablejsapi=1&rel=0'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div v-if="error">
+      {{error.message}}<br/>
+      technical : {{error.technical}}
+    </div>
+    <div v-else-if="videoId" class="video-responsive">
+      <div id="video-frame"></div>
+    </div>
+    <div v-else class="loader">
     </div>
     <a id="external" @click="fullscreen" v-show="loaded">Play Fullscreen</a>
   </div>
@@ -21,7 +27,9 @@ export default {
   name: 'Channel',
   data: function () {
     return {
-      loaded: false
+      loaded: false,
+      error: false,
+      videoId: false
     }
   },
   computed: {
@@ -75,6 +83,53 @@ export default {
       if (this.player) this.player.stopVideo()
     },
     getLiveStream: function () {
+      let _self = this
+
+      function initializeYT () {
+        var tag = document.createElement('script')
+        tag.id = 'iframe-demo'
+        tag.src = 'https://www.youtube.com/iframe_api'
+        var firstScriptTag = document.getElementsByTagName('script')[0]
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+      }
+
+      function onPlayerReady (event) {
+        event.target.playVideo()
+        _self.loaded = true
+        // trick to show scoped css
+        document.getElementsByTagName('iframe')[0].setAttribute(_self.$options._scopeId, '')
+      }
+
+      function takeControl () {
+        console.log('taking control ' + _self.videoId)
+        if (_self.videoId) {
+          _self.player = new YT.Player('video-frame', {
+            videoId: _self.videoId,
+            width: '100%',
+            height: '100%',
+            events: {
+              'onReady': onPlayerReady
+            }
+          })
+        }
+      }
+
+      function loader () {
+        console.log('inside loader')
+        console.log(_self)
+        /* global YT */
+        /* eslint no-undef: ["error", { "typeof": true }] */
+        if (typeof (YT) === 'undefined' || typeof (YT.Player) === 'undefined') {
+          console.log('inside initializeYT')
+          initializeYT()
+          setTimeout(loader, 500)
+        } else {
+          console.log('inside take control')
+          takeControl()
+        }
+      }
+
+      console.log(this.channel)
       axios.get('https://www.googleapis.com/youtube/v3/search',
         {
           params: {
@@ -84,58 +139,38 @@ export default {
             type: 'video',
             key: CONST.AUTH_KEY
           }
-        }).then(function (response) {
-        console.log(response.data)
-      }).catch(function (error) {
-        console.log(error)
-      })
+        }
+      )
+        .then(function (response) {
+          console.log(response.data)
+          let data = response.data
+          try {
+            _self.videoId = data.items[0].id.videoId
+            loader()
+          } catch (e) {
+            console.log(e)
+          }
+        }).catch(function (error) {
+          console.log(error)
+        })
     }
   },
   mounted: function () {
     this.removeEventListeners()
-
-    let _self = this
-
     document.addEventListener('webkitfullscreenchange', this.toggleFullScreen)
     document.addEventListener('mozfullscreenchange', this.toggleFullScreen)
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
     document.addEventListener('pause', this.stopVideo)
-
-    this.getLiveStream()
-
-    function initializeYT () {
-      var tag = document.createElement('script')
-      tag.id = 'iframe-demo'
-      tag.src = 'https://www.youtube.com/iframe_api'
-      var firstScriptTag = document.getElementsByTagName('script')[0]
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-    }
-
-    function takeControl () {
-      _self.player = new YT.Player('video-frame', {
-        events: {
-          'onReady': onPlayerReady
-        }
-      })
-      console.log(_self.player)
-      function onPlayerReady (event) {
-        event.target.playVideo()
-        _self.loaded = true
+  },
+  watch: {
+    'channel.channelId': function (channelId) {
+      console.log('watch executed')
+      console.log(channelId)
+      if (channelId) {
+        this.getLiveStream()
       }
     }
-
-    function loader () {
-      /* global YT */
-      /* eslint no-undef: ["error", { "typeof": true }] */
-      if (typeof (YT) === 'undefined' || typeof (YT.Player) === 'undefined') {
-        initializeYT()
-        setTimeout(loader, 500)
-      } else {
-        takeControl()
-      }
-    }
-    loader()
   }
 
 }
@@ -151,6 +186,8 @@ h2 {
   background-size: 40px;
   background-repeat: no-repeat;
   background-position: center;
+  min-height: 100px;
+  margin-top: 10vh;
 }
 .video-responsive{
   overflow:hidden;

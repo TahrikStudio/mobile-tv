@@ -6,48 +6,40 @@
 			"channels": [
 				{
 					"name": "MediaOne",
-					"url": "https://www.youtube.com/embed/jqlTLLbc4YU",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.png"
 				},
 				{
 					"name": "Asianet News",
-					"url": "https://www.youtube.com/embed/qsP3Y4hHyeM",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/asianet-news.png"
 				},
 				{
 					"name": "Manorama News",
-					"url": "https://www.youtube.com/embed/_dLvcprbEg4",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/manorama-news.png"
 				},
 				{
 					"name": "Mathrubhumi News",
-					"url": "https://www.youtube.com/embed/VgmMHjRZse8",
+					"channelId": "abcded",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
 				},
 				{
 					"name": "News 18 Kerala",
-					"url": "https://www.youtube.com/embed/SL2Sf1FbGPo",
 					"channelId": "UC-mMi78WJST4N5o8_i1FoXw",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
 				},
 				{
 					"name": "Reporter Live",
-					"url": "https://www.youtube.com/embed/uhhIcJZVjfc",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/reporter.png"
 				},
 				{
 					"name": "People TV",
-					"url": "https://www.youtube.com/embed/KuzRYkNBWLQ",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
 				},
 				{
 					"name": "Mangalam News",
-					"url": "https://www.youtube.com/embed/pKdC1gN4Uyg",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
 				},
 				{
 					"name": "Channel 24",
-					"url": "https://www.youtube.com/embed/nhlkLwyYD7s",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
 				}
 
