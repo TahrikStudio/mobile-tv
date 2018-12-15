@@ -15,7 +15,7 @@ export default {
   methods: {
     fetchViewCount: function () {
       let _self = this
-      axios.get('https://www.googleapis.com/youtube/v3/videos?part=liveStreamingDetails&key=AIzaSyBovDLYYp8II9LN1JTS_osdSyaR98FRHHA&id=bSWocTFWKPE', {
+      axios.get('https://www.googleapis.com/youtube/v3/videos', {
         params: {
           part: 'liveStreamingDetails',
           id: this.videoId,
@@ -47,7 +47,7 @@ export default {
 <style>
   .info {
     padding: 1.5em;
-    color: #ddd;
+    color: #aaa;
     padding-right: 0
   }
 </style>
