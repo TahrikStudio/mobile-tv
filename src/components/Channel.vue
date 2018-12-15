@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import CONST from '../assets/script/secret.js'
+import axios from 'axios'
 
 export default {
   name: 'Channel',
@@ -71,6 +73,22 @@ export default {
     },
     stopVideo: function () {
       if (this.player) this.player.stopVideo()
+    },
+    getLiveStream: function () {
+      axios.get('https://www.googleapis.com/youtube/v3/search',
+        {
+          params: {
+            part: 'snippet',
+            channelId: this.channel.channelId,
+            eventType: 'live',
+            type: 'video',
+            key: CONST.AUTH_KEY
+          }
+        }).then(function (response) {
+        console.log(response.data)
+      }).catch(function (error) {
+        console.log(error)
+      })
     }
   },
   mounted: function () {
@@ -83,6 +101,8 @@ export default {
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
     document.addEventListener('pause', this.stopVideo)
+
+    this.getLiveStream()
 
     function initializeYT () {
       var tag = document.createElement('script')
