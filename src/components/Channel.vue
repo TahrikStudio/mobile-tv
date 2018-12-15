@@ -6,22 +6,23 @@
       </router-link>
       <h2>{{channel.name}}</h2>
     </div>
-    <div v-if="error">
-      {{error.message}}<br/>
-      technical : {{error.technical}}
-    </div>
-    <div v-else-if="videoId" class="video-responsive">
+    <Viewers v-if="videoId" :videoId="videoId"></Viewers>
+    <div class="video-responsive">
+      <div v-if="error">
+        {{error.message}}<br/><br/>
+        technical : {{error.technical}}
+      </div>
       <div id="video-frame"></div>
+      <div v-if="!loaded" class="loader"></div>
     </div>
-    <div v-else class="loader">
-    </div>
-    <a id="external" @click="fullscreen" v-show="loaded">Play Fullscreen</a>
+    <a id="external" @click="fullscreen" v-if="loaded">Play Fullscreen</a>
   </div>
 </template>
 
 <script>
 import CONST from '../assets/script/secret.js'
 import axios from 'axios'
+import Viewers from './Viewers'
 
 export default {
   name: 'Channel',
@@ -31,6 +32,9 @@ export default {
       error: false,
       videoId: false
     }
+  },
+  components: {
+    Viewers
   },
   computed: {
     categoryId () {
@@ -101,7 +105,6 @@ export default {
       }
 
       function takeControl () {
-        console.log('taking control ' + _self.videoId)
         if (_self.videoId) {
           _self.player = new YT.Player('video-frame', {
             videoId: _self.videoId,
@@ -115,21 +118,16 @@ export default {
       }
 
       function loader () {
-        console.log('inside loader')
-        console.log(_self)
         /* global YT */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (typeof (YT) === 'undefined' || typeof (YT.Player) === 'undefined') {
-          console.log('inside initializeYT')
           initializeYT()
           setTimeout(loader, 500)
         } else {
-          console.log('inside take control')
           takeControl()
         }
       }
 
-      console.log(this.channel)
       axios.get('https://www.googleapis.com/youtube/v3/search',
         {
           params: {
@@ -142,16 +140,25 @@ export default {
         }
       )
         .then(function (response) {
-          console.log(response.data)
           let data = response.data
           try {
             _self.videoId = data.items[0].id.videoId
-            loader()
+            _self.$nextTick(function () {
+              loader()
+            })
           } catch (e) {
-            console.log(e)
+            console.error(e)
+            _self.error = {
+              'message': 'No live streaming available at the moment. Please try after some time',
+              'technical': e
+            }
           }
         }).catch(function (error) {
-          console.log(error)
+          console.error(error)
+          _self.error = {
+            'message': 'No live streaming available at the moment. Please try after some time',
+            'technical': error
+          }
         })
     }
   },
@@ -162,11 +169,13 @@ export default {
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
     document.addEventListener('pause', this.stopVideo)
+
+    if (this.channel.channelId) {
+      this.getLiveStream()
+    }
   },
   watch: {
     'channel.channelId': function (channelId) {
-      console.log('watch executed')
-      console.log(channelId)
       if (channelId) {
         this.getLiveStream()
       }
@@ -194,7 +203,6 @@ h2 {
   padding-bottom:56.25%;
   position:relative;
   height:0;
-  margin-top: 10vh;
 }
 .video-responsive iframe{
   left:0;

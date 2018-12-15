@@ -49,7 +49,7 @@ li {
   width: 25%;
   padding: .1em;
   margin: .5em .5em;
-  border: 1px solid rgba(255, 255, 255, 0.1)
+  /*border: 1px solid rgba(255, 255, 255, 0.1)*/
 }
 .channel img {
   display: block;

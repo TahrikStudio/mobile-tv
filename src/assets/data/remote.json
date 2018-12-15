@@ -6,19 +6,22 @@
 			"channels": [
 				{
 					"name": "MediaOne",
+					"channelId": "MediaoneTVLive",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.png"
 				},
 				{
 					"name": "Asianet News",
+					"channelId": "asianetnews",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/asianet-news.png"
 				},
 				{
 					"name": "Manorama News",
+					"channelId": "UCP0uG-mcMImgKnJz-VjJZmQ",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/manorama-news.png"
 				},
 				{
 					"name": "Mathrubhumi News",
-					"channelId": "abcded",
+					"channelId": "TVMathrubhumi",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
 				},
 				{
@@ -28,18 +31,22 @@
 				},
 				{
 					"name": "Reporter Live",
+					"channelId": "UCFx1nseXKTc1Culiu3neeSQ",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/reporter.png"
 				},
 				{
 					"name": "People TV",
+					"channelId": "peopletvonline",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
 				},
 				{
 					"name": "Mangalam News",
+					"channelId": "UCbdTuwZxsxuxAp_UGbl7YpA",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
 				},
 				{
 					"name": "Channel 24",
+					"channelId": "UCup3etEdjyF1L3sRbU-rKLw",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
 				}
 
