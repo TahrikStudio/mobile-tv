@@ -51,7 +51,7 @@
 				}
 
 			]
-		},
+		}/*,
 		{
 			"name": "English News (India)",
 			"channels": [
@@ -66,6 +66,6 @@
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18-main.png"
 				}
 			]
-		}
+		}*/
 	]
 }
