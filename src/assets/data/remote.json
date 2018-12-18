@@ -51,6 +51,21 @@
 				}
 
 			]
+		},
+		{
+			"name": "English News (India)",
+			"channels": [
+				{
+					"name": "NDTV 24x7",
+					"channelId": "UC9CYT9gSNLevX5ey2_6CK0Q",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/NDTV_247.png"
+				},
+				{
+					"name": "CNN News 18",
+					"channelId": "UCPP3etACgdUWvizcES1dJ8Q",
+					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18-main.png"
+				}
+			]
 		}
 	]
 }
