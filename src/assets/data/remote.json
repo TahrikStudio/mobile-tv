@@ -49,23 +49,7 @@
 					"channelId": "UCup3etEdjyF1L3sRbU-rKLw",
 					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
 				}
-
 			]
-		}/*,
-		{
-			"name": "English News (India)",
-			"channels": [
-				{
-					"name": "NDTV 24x7",
-					"channelId": "UCZFMm1mMw0F81Z37aaEzTUA",
-					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/NDTV_247.png"
-				},
-				{
-					"name": "CNN News 18",
-					"channelId": "UCef1-8eOpJgud7szVPlZQAQ",
-					"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18-main.png"
-				}
-			]
-		}*/
+		}
 	]
 }
