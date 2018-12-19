@@ -1,4 +1,4 @@
-# mobile-tv
+# ENLIGHTEN
 
 > A hybrid app to stream live videos from youtube
 

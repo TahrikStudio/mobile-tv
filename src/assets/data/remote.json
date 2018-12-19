@@ -59,6 +59,14 @@
         {
           "name": "Al Jazeera",
           "channelId": "UCNye-wNBqNL5ZzHSJj3l8Bg"
+        },
+        {
+          "name": "Sky News",
+          "channelId": "UCoMdktPbSTixAyNGwb-UYkQ"
+        },
+        {
+          "name": "Euro News",
+          "channelId": "UCSrZ3UV4jOidv8ppoVuvW9Q"
         }
       ]
     }
