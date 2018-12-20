@@ -70,6 +70,39 @@
           "name": "Euro News",
           "channelId": "UCSrZ3UV4jOidv8ppoVuvW9Q",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/euronews.png"
+        },
+        {
+          "name": "France 24",
+          "channelId": "UCQfwfsi5VrQ8yKZ-UWmAEFg"
+        },
+        {
+          "name": "TRT World",
+          "channelId": "UC7fWeaHhqgM4Ry-RMpM2YYw"
+        }
+      ]
+    },
+    {
+      "name": "English News (India)",
+      "channels": [
+        {
+          "name": "India Today",
+          "channelId": "UCYPvAwZP8pZhSMW8qs7cVCw"
+        },
+        {
+          "name": "BTVI",
+          "channelId": "UCSWqx0thwK-nSt3wEgcUmFg"
+        },
+        {
+          "name": "CNBC TV 18",
+          "channelId": "UCmRbHAgG2k2vDUvb3xsEunQ"
+        },
+        {
+          "name": "NDTV 24x7",
+          "channelId": "UCZFMm1mMw0F81Z37aaEzTUA"
+        },
+        {
+          "name": "News 9",
+          "channelId": "UCRK4FDIkUyslEAUdyRDdCtQ"
         }
       ]
     }
