@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="nav">
-      <h2>Menu</h2>
-    </div>
+    <v-toolbar class="white--text" color="#1DA1F2">
+      <v-toolbar-title>MENU</v-toolbar-title>
+    </v-toolbar>
     <div class="categories">
       <div class="category" v-bind:key="index" v-for="(category, index) in categories">
         <router-link :to="{name: 'Category', params: {categoryId: index}}">
@@ -17,29 +17,29 @@
 </template>
 
 <script>
-export default {
-  name: 'Menu',
-  computed: {
-    categories () {
-      return this.$store.state.data.categories || []
-    }
-  },
-  methods: {
-    exitApp: function () {
-      if (navigator.app) {
-        navigator.app.exitApp()
-      } else if (navigator.device) {
-        navigator.device.exitApp()
-      } else {
-        window.close()
+  export default {
+    name: 'Menu',
+    computed: {
+      categories () {
+        return this.$store.state.data.categories || []
+      }
+    },
+    methods: {
+      exitApp: function () {
+        if (navigator.app) {
+          navigator.app.exitApp()
+        } else if (navigator.device) {
+          navigator.device.exitApp()
+        } else {
+          window.close()
+        }
+      }
+    },
+    data () {
+      return {
       }
     }
-  },
-  data () {
-    return {
-    }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
