@@ -7,11 +7,6 @@
       "name": "Malayalam News",
       "channels": [
         {
-          "name": "MediaOne",
-          "channelId": "UC-f7r46JhYv78q5pGrO6ivA",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.png"
-        },
-        {
           "name": "Asianet News",
           "channelId": "UCf8w5m0YsRa8MHQ5bwSGmbw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/asianet-news.png"
@@ -27,9 +22,15 @@
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
         },
         {
+          "name": "MediaOne",
+          "channelId": "UC-f7r46JhYv78q5pGrO6ivA",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.png"
+        },
+        {
           "name": "News 18 Kerala",
           "channelId": "UC-mMi78WJST4N5o8_i1FoXw",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png"
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png",
+          "message": "Presently, we don't support News streaming as they don't permit us to use their stream from YouTube"
         },
         {
           "name": "Reporter Live",
