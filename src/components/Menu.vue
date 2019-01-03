@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="nav">
-      <h2>Menu</h2>
+      <h2>
+      <a id="back" class="disabled">❮</a>
+      Menu
+      </h2>
     </div>
     <div class="categories">
       <div class="category" v-bind:key="index" v-for="(category, index) in categories">
@@ -61,10 +64,9 @@ li {
 .category a{
   padding: .5em 1em;
   display: block;
-  font-weight: bold;
   text-decoration: none;
   margin: .5em 1em;
-  border: 1px solid white;
+  background: var(--primary-color);
   color: white;
   border-radius: 10px 10px;
   cursor: pointer;

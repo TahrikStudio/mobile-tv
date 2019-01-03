@@ -1,6 +1,6 @@
 <template>
     <div class="info">
-        <span v-if="count">{{count}} Viewers watching now</span>
+        <span v-if="count">{{count}} people watching now</span>
     </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
 <style>
   .info {
     padding: 1.5em;
-    color: #aaa;
+    color: var(--primary-color);
     padding-right: 0
   }
 </style>

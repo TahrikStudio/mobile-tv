@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="nav">
-      <router-link :to="{name: 'Menu'}">
-        <span id="back">❮</span>
-      </router-link>
-      <h2>{{category.name}}</h2>
+      <h2>
+        <router-link id="back" :to="{name: 'Menu'}">
+          ❮
+        </router-link>
+        {{category.name}}
+      </h2>
     </div>
 
     <div v-bind:key="index" class="channel" v-for="(channel, index) in category.channels">

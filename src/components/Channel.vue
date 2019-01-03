@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="nav">
-      <router-link :to="{name: 'Category', params: {categoryId: categoryId}}">
-        <span id="back">❮</span>
-      </router-link>
-      <h2>{{channel.name}}</h2>
+      <h2>
+        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}">
+          ❮
+        </router-link>
+        {{channel.name}}
+      </h2>
     </div>
-    <Viewers v-if="videoId" :videoId="videoId"></Viewers>
     <div class="video-responsive">
       <div v-if="error">
         {{error.message}}<br/><br/>
@@ -16,6 +17,7 @@
       <div v-if="!loaded" class="loader"></div>
     </div>
     <a id="external" @click="fullscreen" v-if="loaded">Play Fullscreen</a>
+    <Viewers v-if="videoId" :videoId="videoId"></Viewers>
   </div>
 </template>
 
@@ -199,6 +201,7 @@ h2 {
   margin-top: 10vh;
 }
 .video-responsive{
+  margin-top: 5vh;
   overflow:hidden;
   padding-bottom:56.25%;
   position:relative;
@@ -212,9 +215,9 @@ h2 {
   position:absolute;
 }
 a#external {
-  background: #35b9ab;
+  background: var(--primary-color);
   padding: 1rem;
-  color: #173f4f;
+  color: white;
   display: block;
   margin-top: 5vh
 }

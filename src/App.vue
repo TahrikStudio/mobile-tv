@@ -81,6 +81,9 @@ export default {
 </script>
 
 <style>
+:root {
+  --primary-color: #007aff;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -89,7 +92,6 @@ export default {
 }
 h1, h2 {
   font-weight: normal;
-  display: inline;
 }
 h1 {
   margin-bottom: 0
@@ -101,23 +103,28 @@ h2 {
   text-transform: uppercase;
 }
 a {
-  color: white;
+  color: var(--primary-color);
   text-decoration: none;
 }
 body {
   max-width: 720px;
   margin: auto;
-  background: #173f4f;
-  color: #35b9ab;
 }
 .nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding: 1em;
+  background: var(--primary-color);
+  color: white;
+  text-align: left;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .5)
+}
+.nav a {
+  color: white;
 }
 #back {
-  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0 .5em;
-  margin-right: 1em;
-  float: left;
+}
+#back.disabled {
+  color: rgba(255, 255, 255, .5)
 }
 </style>
