@@ -53,6 +53,12 @@ export default {
     }
   },
   methods: {
+    fullscreenSuccess: function () {
+      console.log('fullscreen success')
+    },
+    fullscreenError: function (error) {
+      console.log('fullscreen error' + error)
+    },
     fullscreen: function () {
       var iframe = document.getElementById('video-frame')
       var requestFullScreen = iframe.requestFullScreen || iframe.mozRequestFullScreen || iframe.webkitRequestFullScreen
@@ -77,12 +83,22 @@ export default {
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.hide()
+        /* global AndroidFullScreen */
+        /* eslint no-undef: ["error", { "typeof": true }] */
+        if (window.AndroidFullScreen) {
+          AndroidFullScreen.immersiveMode(this.fullscreenSuccess, this.fullscreenError)
+        }
       } else {
         screen.orientation.lock('portrait')
         if (window.plugins) window.plugins.insomnia.allowSleepAgain()
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.show()
+        /* global AndroidFullScreen */
+        /* eslint no-undef: ["error", { "typeof": true }] */
+        if (window.AndroidFullScreen) {
+          AndroidFullScreen.showSystemUI(this.fullscreenSuccess, this.fullscreenError)
+        }
       }
     },
     stopVideo: function () {

@@ -13,6 +13,7 @@
     "cordova-admob-sdk": "^0.21.0",
     "cordova-android": "^7.1.4",
     "cordova-plugin-admob-free": "^0.24.0",
+    "cordova-plugin-fullscreen": "^1.2.0",
     "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -28,7 +29,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-admob-free": {
         "ADMOB_APP_ID": "ca-app-pub-6380671811722843~2199965818"
-      }
+      },
+      "cordova-plugin-fullscreen": {}
     },
     "platforms": [
       "android"

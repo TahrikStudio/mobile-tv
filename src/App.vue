@@ -40,7 +40,7 @@ export default {
       e.preventDefault()
       console.log('pressed backbutton')
       let back = document.getElementById('back')
-      if (back) {
+      if (back && back.getAttribute('class') !== 'disabled') {
         back.click()
       } else {
         // Exit app
