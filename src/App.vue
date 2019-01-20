@@ -114,7 +114,7 @@ body {
 }
 .nav {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1em;
+  padding: 1em .5em;
   background: var(--primary-color);
   color: white;
   text-align: left;
@@ -124,7 +124,9 @@ body {
   color: white;
 }
 #back {
-  padding: 0 .5em;
+  padding-right: .5em;
+  margin-right: .5em;
+  border-right: 1px solid rgba(0, 0, 0, .2)
 }
 #back.disabled {
   color: rgba(255, 255, 255, .5)

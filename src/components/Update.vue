@@ -2,9 +2,7 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link id="back" :to="{name: 'Menu'}">
-          ❮
-        </router-link>
+        <router-link id="back" :to="{name: 'Menu'}">❮</router-link>
         Check for updates
       </h2>
     </div>

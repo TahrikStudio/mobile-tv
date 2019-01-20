@@ -2,9 +2,7 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}">
-          ❮
-        </router-link>
+        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}">❮</router-link>
         {{channel.name}}
       </h2>
     </div>

@@ -2,9 +2,7 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link id="back" :to="{name: 'Menu'}">
-          ❮
-        </router-link>
+        <router-link id="back" :to="{name: 'Menu'}">❮</router-link>
         {{category.name}}
       </h2>
     </div>
