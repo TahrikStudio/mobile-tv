@@ -7,7 +7,7 @@
 <script>
 import axios from 'axios'
 import json from './assets/data/data.json'
-
+import {initializeRating} from './assets/script/rating.js'
 const STORAGE_KEY = 'mobile-tv-json'
 
 export default {
@@ -35,6 +35,8 @@ export default {
           admob.banner.show()
         }, 500)
       }
+
+      initializeRating()
     },
     onBackKeyDown: function (e) {
       e.preventDefault()

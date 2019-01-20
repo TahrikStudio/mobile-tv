@@ -12,14 +12,24 @@
           {{category.name}}
         </router-link>
       </div>
+      <hr>
       <div class="category">
-        <a @click="exitApp">Leave App</a>
+        <a @click="openRateDialog">Rate Us</a>
+      </div>
+      <div class="category">
+        <router-link :to="{name: 'Update'}">
+          Check for Update
+        </router-link>
+      </div>
+      <div class="category">
+        <a @click="exitApp">Exit</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {openRateDialog} from '../assets/script/rating.js'
 export default {
   name: 'Menu',
   computed: {
@@ -36,6 +46,9 @@ export default {
       } else {
         window.close()
       }
+    },
+    openRateDialog: function () {
+      openRateDialog()
     }
   },
   data () {
@@ -70,5 +83,9 @@ li {
   color: white;
   border-radius: 10px 10px;
   cursor: pointer;
+}
+hr {
+  border: none;
+  margin-bottom: 2em;
 }
 </style>

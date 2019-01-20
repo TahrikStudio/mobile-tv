@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Menu from '@/components/Menu'
 import Category from '@/components/Category'
 import Channel from '@/components/Channel'
+import Update from '@/components/Update'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/category/:categoryId/channel/:channelId',
       name: 'Channel',
       component: Channel
+    },
+    {
+      path: '/update',
+      name: 'Update',
+      component: Update
     }
   ]
 })
