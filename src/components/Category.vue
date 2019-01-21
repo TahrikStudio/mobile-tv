@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="channels">
     <div class="nav">
       <h2>
         <router-link id="back" :to="{name: 'Menu'}">❮</router-link>
         {{category.name}}
       </h2>
     </div>
-
     <div v-bind:key="index" class="channel" v-for="(channel, index) in category.channels">
       <router-link :to="{name: 'Channel', params: {categoryId: categoryId, channelId: index}}">
         <img v-if="channel.logo" :src="channel.logo">
@@ -35,14 +34,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
-  text-align: left;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+.channels {
+  background: white;
 }
 .channel {
   display: inline-block;

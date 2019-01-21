@@ -67,12 +67,13 @@ export default {
   padding: 1em 1em;
   display: block;
   text-decoration: none;
-  margin: .5em 0em;
-  background: var(--primary-color);
-  color: white;
+  margin: .2em 1em;
+  background: white;
+  color: var(--primary-color);
   cursor: pointer;
   text-align: left;
   text-transform: uppercase;
+  box-shadow: 1px 1px 1px 1px #eee;
 }
 .category a:before {
   content: '⇨';

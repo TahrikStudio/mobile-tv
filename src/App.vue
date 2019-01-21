@@ -86,6 +86,9 @@ export default {
 :root {
   --primary-color: #0084b4;
 }
+html {
+  background: #f5f5f5;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -94,12 +97,9 @@ export default {
 }
 h1, h2 {
   font-weight: normal;
-}
-h1 {
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 h2 {
-  margin-bottom: 0;
   margin-top: 0;
   font-size: 1.2rem;
   text-transform: uppercase;
