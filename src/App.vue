@@ -105,7 +105,7 @@ h2 {
   text-transform: uppercase;
 }
 a {
-  color: var(--primary-color);
+  color: black;
   text-decoration: none;
 }
 body {
@@ -120,15 +120,13 @@ body {
   text-align: left;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, .5)
 }
-.nav a {
-  color: white;
-}
-#back {
-  padding-right: .5em;
+.icon {
+  vertical-align: middle;
   margin-right: .5em;
+  padding-right: .5em;
   border-right: 1px solid rgba(0, 0, 0, .2)
 }
-#back.disabled {
-  color: rgba(255, 255, 255, .5)
+.nav a {
+  color: white;
 }
 </style>

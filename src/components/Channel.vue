@@ -2,8 +2,7 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}">❮</router-link>
-        {{channel.name}}
+        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{channel.name}}
       </h2>
     </div>
     <div class="video-responsive">
@@ -14,7 +13,7 @@
       <div id="video-frame"></div>
       <div v-if="!loaded" class="loader"></div>
     </div>
-    <a id="external" @click="fullscreen" v-if="loaded">Play Fullscreen</a>
+    <a class="external" @click="fullscreen" v-if="loaded"><img src="../assets/meta/fullscreen.svg">Play Fullscreen</a>
     <Viewers v-if="videoId" :videoId="videoId"></Viewers>
   </div>
 </template>
@@ -228,11 +227,14 @@ h2 {
   width:100%;
   position:absolute;
 }
-a#external {
+.external {
   background: var(--primary-color);
   padding: 1rem;
   color: white;
   display: block;
   margin-top: 5vh
+}
+.external img {
+  vertical-align: middle;
 }
 </style>

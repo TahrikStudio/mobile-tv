@@ -1,28 +1,25 @@
 <template>
   <div>
     <div class="nav">
-      <h2>
-      <a id="back" class="disabled">❮</a>
-      Menu
-      </h2>
+      <h2><a><img class="icon" src="../assets/meta/back-disabled.svg"></a>Menu</h2>
     </div>
     <div class="categories">
       <div class="category" v-bind:key="index" v-for="(category, index) in categories">
         <router-link :to="{name: 'Category', params: {categoryId: index}}">
-          {{category.name}}
+          <img class="icon" src="../assets/meta/tv.svg">{{category.name}}
         </router-link>
       </div>
       <hr>
       <div class="category">
         <router-link :to="{name: 'Update'}">
-          Check for Update
+          <img class="icon" src="../assets/meta/cloud.svg">Check for Update
         </router-link>
       </div>
       <div class="category">
-        <a @click="openRateDialog">Rate Us</a>
+        <a @click="openRateDialog"><img class="icon" src="../assets/meta/star.svg">Rate Us</a>
       </div>
       <div class="category">
-        <a @click="exitApp">Exit</a>
+        <a @click="exitApp"><img class="icon" src="../assets/meta/exit.svg">Exit</a>
       </div>
     </div>
   </div>
@@ -61,25 +58,18 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .categories {
-  margin-top: 10vh;
+  margin-top: 5vh;
 }
 .category a{
   padding: 1em 1em;
   display: block;
-  text-decoration: none;
   margin: .2em 1em;
   background: white;
-  color: var(--primary-color);
+  color: black;
   cursor: pointer;
   text-align: left;
   text-transform: uppercase;
   box-shadow: 1px 1px 1px 1px #eee;
-}
-.category a:before {
-  content: '⇨';
-  padding-right: .5em;
-  margin-right: .5em;
-  border-right: 1px solid rgba(0, 0, 0, .2)
 }
 hr {
   border: none;

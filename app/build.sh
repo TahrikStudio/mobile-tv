@@ -1,8 +1,10 @@
 # Clear current files
-rm -rf www/assets www/index.html
+rm -rf www/static www/index.html
 
 # Copy sources
 cp -r ../dist/* www/
+rm www/static/css/*.map
+rm www/static/js/*.map
 
 # Replace
 sed -i 's/\/static/.\/static/g' www/index.html
