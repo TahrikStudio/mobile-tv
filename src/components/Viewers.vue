@@ -28,16 +28,23 @@ export default {
           } catch (error) {
             console.error(error)
           }
-          setTimeout(_self.fetchViewCount, 10000)
+          _self.timeout = setTimeout(_self.fetchViewCount, 10000)
         })
     }
   },
   mounted: function () {
     this.fetchViewCount()
   },
+  destroyed: function () {
+    if (this.timeout) {
+      clearTimeout(this.timeout)
+      this.timeout = false
+    }
+  },
   data () {
     return {
-      count: false
+      count: false,
+      timeout: false
     }
   }
 }
