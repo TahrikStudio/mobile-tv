@@ -50,8 +50,9 @@ export default {
 }
 .channel a {
   position: absolute;
+  left: 0;
+  right: 0;
   bottom: .5em;
-  left: .5em;
 }
 .channel img {
   display: block;
