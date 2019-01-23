@@ -109,6 +109,15 @@
           "channelId": "UCRK4FDIkUyslEAUdyRDdCtQ"
         }
       ]
+    },
+    {
+      "name": "Miscellaneous",
+      "channels": [
+        {
+          "name": "DD News",
+          "channelId": "UCKwucPzHZ7zCUIf7If-Wo1g"
+        }
+      ]
     }
   ]
 }
