@@ -27,7 +27,7 @@
         {
           "name": "France 24",
           "channelId": "UCQfwfsi5VrQ8yKZ-UWmAEFg",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/france24.svg"
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/france24.png"
         },
         {
           "name": "TRT World",
@@ -152,6 +152,47 @@
           "name": "Channel 24",
           "channelId": "UCup3etEdjyF1L3sRbU-rKLw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
+        }
+      ]
+    },
+    {
+      "name": "Tamil News",
+      "channels": [
+        {
+          "name": "Polimer News",
+          "channelId": "UC8Z-VjXBtDJTvq6aqkIskPg"
+        },
+        {
+          "name": "News 7 Tamil",
+          "channelId": "UCGyZswzm4G-wEfRQHgMSAuw"
+        },
+        {
+          "name": "Puthiya Thalaimurai",
+          "channelId": "UCmyKnNRH0wH-r8I-ceP-dsg"
+        },
+        {
+          "name": "Sathiyam News",
+          "channelId": "UC2ziCMHFPWkFHjocUMXT__Q"
+        },
+        {
+          "name": "Sun News",
+          "channelId": "UCYlh4lH762HvHt6mmiecyWQ"
+        },
+        {
+          "name": "Kalaignar TV",
+          "channelId": "UCcVF2Fth-qEA4T1Lhn3CgKg"
+        },
+        {
+          "name": "Cauvery News",
+          "channelId": "UCxndy2Pkxa7UotOHNoim6fQ"
+        },
+        {
+          "name": "Captain News",
+          "channelId": "UCno6OgN7-NDmRTNBgqWevlw"
+        },
+        {
+          "name": "Makkal Kural News",
+          "channelId": "UCmLidlVwlwDhGYZqiPIY3TQ"
         }
       ]
     }
