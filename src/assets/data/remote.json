@@ -40,6 +40,11 @@
       "name": "English News (India)",
       "channels": [
         {
+          "name": "HTN News",
+          "channelId": "UClpoXr897WD1HgEXKeUe8vw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/htn.jpg"
+        },
+        {
           "name": "India Today",
           "channelId": "UCYPvAwZP8pZhSMW8qs7cVCw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/indiatoday.png"
@@ -71,7 +76,8 @@
       "channels": [
         {
           "name": "Aaj Tak",
-          "channelId": "UCt4t-jeY85JegMlZ-E5UWtA"
+          "channelId": "UCt4t-jeY85JegMlZ-E5UWtA",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/aaj-tak.png"
         },
         {
           "name": "DD News",
@@ -80,27 +86,33 @@
         },
         {
           "name": "India TV",
-          "channelId": "UCttspZesZIDEwwpVIgoZtWQ"
+          "channelId": "UCttspZesZIDEwwpVIgoZtWQ",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/india-tv.jpg"
         },
         {
           "name": "News Nation",
-          "channelId": "UCsNdeLwEZf86swPD3qJJ7Dw"
+          "channelId": "UCsNdeLwEZf86swPD3qJJ7Dw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news-nation.jpg"
         },
         {
           "name": "NDTV India",
-          "channelId": "UC9CYT9gSNLevX5ey2_6CK0Q"
+          "channelId": "UC9CYT9gSNLevX5ey2_6CK0Q",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/ndtv-india.png"
         },
         {
           "name": "ABP News",
-          "channelId": "UCmphdqZNmqL72WJ2uyiNw5w"
+          "channelId": "UCmphdqZNmqL72WJ2uyiNw5w",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/abp-news.jpg"
         },
         {
           "name": "News 24",
-          "channelId": "UCuzS3rPQAYqHcLWqOFuY0pw"
+          "channelId": "UCuzS3rPQAYqHcLWqOFuY0pw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news-24.jpg"
         },
         {
           "name": "Tez",
-          "channelId": "UCQC1wGbOOIoC23fRGxt4kbg"
+          "channelId": "UCQC1wGbOOIoC23fRGxt4kbg",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/tez.png"
         }
       ]
     },
