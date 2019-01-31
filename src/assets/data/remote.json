@@ -40,11 +40,6 @@
       "name": "English News (India)",
       "channels": [
         {
-          "name": "HTN News",
-          "channelId": "UClpoXr897WD1HgEXKeUe8vw",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/htn.jpg"
-        },
-        {
           "name": "India Today",
           "channelId": "UCYPvAwZP8pZhSMW8qs7cVCw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/indiatoday.png"
@@ -68,6 +63,11 @@
           "name": "News 9",
           "channelId": "UCRK4FDIkUyslEAUdyRDdCtQ",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news9.png"
+        },
+        {
+          "name": "HTN News",
+          "channelId": "UClpoXr897WD1HgEXKeUe8vw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/htn.jpg"
         }
       ]
     },
