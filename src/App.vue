@@ -94,6 +94,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  padding-top: 3.2rem;
 }
 h1, h2 {
   font-weight: normal;
@@ -118,7 +119,11 @@ body {
   background: var(--primary-color);
   color: white;
   text-align: left;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, .5)
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1
 }
 .icon {
   vertical-align: middle;

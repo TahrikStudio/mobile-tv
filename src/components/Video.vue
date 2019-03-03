@@ -95,6 +95,7 @@ export default {
         _self.loaded = true
         // trick to show scoped css
         document.getElementsByTagName('iframe')[0].setAttribute(_self.$options._scopeId, '')
+        window.scrollTo(0, 0)
       }
 
       function takeControl () {
@@ -121,7 +122,6 @@ export default {
         }
       }
       loader()
-      window.scrollTo(0, 0)
     }
   },
   mounted: function () {

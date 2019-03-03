@@ -105,7 +105,7 @@ export default {
 <style scoped>
 .channels {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, auto);
   grid-gap: .2em;
   margin-top: 2vh
 }
@@ -114,6 +114,7 @@ export default {
     padding: .5em;
     box-shadow: 1px 1px 1px #ddd;
     position: relative;
+    word-break: break-all;
 }
 .channel a {
   position: absolute;

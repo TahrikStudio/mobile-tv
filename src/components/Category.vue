@@ -46,7 +46,8 @@ export default {
     padding: .5em;
     box-shadow: 1px 1px 1px #ddd;
     position: relative;
-    height: 140px
+    height: 140px;
+    word-break: break-all
 }
 .channel a {
   position: absolute;

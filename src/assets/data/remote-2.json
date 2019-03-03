@@ -212,15 +212,15 @@
     	"name": "Online TV",
     	"channels" : [
     		{
+          "name": "Dool News",
+          "channelId": "UCTb-RU5RQOXd01XllRQN-MA",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/dool.jpg",
+          "online": true
+        },
+        {
     			"name": "Marunadan TV",
     			"channelId": "UCBeF-3nSRWwsGttfAA3WSvA",
     			"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/marunadan.jpg",
-    			"online": true
-    		},
-    		{
-    			"name": "Dool News",
-    			"channelId": "UCTb-RU5RQOXd01XllRQN-MA",
-    			"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/dool.jpg",
     			"online": true
     		},
     		{
