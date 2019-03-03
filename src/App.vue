@@ -64,7 +64,7 @@ export default {
 
     let _self = this
     // Try to load remote data, save it on local
-    axios.get('https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/data/remote.json').then(function (response) {
+    axios.get('https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/data/remote-2.json').then(function (response) {
       _self.$store.commit('setData', response.data)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(response.data))
     }).catch(function (err) {
@@ -128,5 +128,19 @@ body {
 }
 .nav a {
   color: white;
+}
+.external {
+  background: var(--primary-color);
+  padding: 1rem;
+  color: white;
+  display: block;
+  margin-top: 5vh
+}
+.external img {
+  vertical-align: middle;
+}
+.link {
+  color: var(--primary-color);
+  text-decoration: underline;
 }
 </style>

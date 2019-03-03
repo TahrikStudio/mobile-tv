@@ -2,12 +2,12 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link :to="{name: 'Menu'}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{category.name}}
+        <router-link id="back" :to="{name: 'Menu'}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{category.name}}
       </h2>
     </div>
     <div class="channels">
       <div v-bind:key="index" class="channel" v-for="(channel, index) in category.channels">
-        <router-link :to="{name: 'Channel', params: {categoryId: categoryId, channelId: index}}">
+        <router-link :to="{name: channel.online ? 'Videos':'Channel', params: {categoryId: categoryId, channelId: index}}">
           <img v-if="channel.logo" :src="channel.logo">
           <img v-else src="../assets/logo/placeholder.png">
           <br/>

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div class="nav">
-      <h2>
-        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{channel.name}}
-      </h2>
-    </div>
+    <h3>{{title}}</h3>
     <div class="video-responsive">
       <div v-if="error">
         {{error.message}}<br/><br/>
@@ -14,43 +10,21 @@
       <div v-if="!loaded" class="loader"></div>
     </div>
     <a class="external" @click="fullscreen" v-if="loaded"><img src="../assets/meta/fullscreen.svg">Play Fullscreen</a>
-    <Viewers v-if="videoId" :videoId="videoId"></Viewers>
-    <router-link class="link" :to="{name: 'Videos', params: {categoryId: categoryId, channelId: channelId, live: true}}">
-      Latest videos from {{channel.name}}
-    </router-link>
-
   </div>
 </template>
 
 <script>
-import CONST from '../assets/script/secret.js'
-import axios from 'axios'
-import Viewers from './Viewers'
 
 export default {
-  name: 'Channel',
+  name: 'Video',
+  props: {
+    videoId: false,
+    title: false
+  },
   data: function () {
     return {
       loaded: false,
-      error: false,
-      videoId: false
-    }
-  },
-  components: {
-    Viewers
-  },
-  computed: {
-    categoryId () {
-      return this.$route.params.categoryId
-    },
-    channelId () {
-      return this.$route.params.channelId
-    },
-    category () {
-      return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId] : {name: ''}
-    },
-    channel () {
-      return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId].channels[this.channelId] : {name: ''}
+      error: false
     }
   },
   methods: {
@@ -105,7 +79,7 @@ export default {
     stopVideo: function () {
       if (this.player) this.player.stopVideo()
     },
-    getLiveStream: function () {
+    playVideo: function () {
       let _self = this
 
       function initializeYT () {
@@ -146,39 +120,8 @@ export default {
           takeControl()
         }
       }
-
-      axios.get('https://www.googleapis.com/youtube/v3/search',
-        {
-          params: {
-            part: 'snippet',
-            channelId: this.channel.channelId,
-            eventType: 'live',
-            type: 'video',
-            key: CONST.AUTH_KEY
-          }
-        }
-      )
-        .then(function (response) {
-          let data = response.data
-          try {
-            _self.videoId = data.items[0].id.videoId
-            _self.$nextTick(function () {
-              loader()
-            })
-          } catch (e) {
-            console.error(e)
-            _self.error = {
-              'message': 'No live streaming available at the moment. Please try after some time',
-              'technical': e
-            }
-          }
-        }).catch(function (error) {
-          console.error(error)
-          _self.error = {
-            'message': 'No live streaming available at the moment. Please try after some time',
-            'technical': error
-          }
-        })
+      loader()
+      window.scrollTo(0, 0)
     }
   },
   mounted: function () {
@@ -188,19 +131,18 @@ export default {
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
     document.addEventListener('pause', this.stopVideo)
-
-    if (this.channel.channelId) {
-      this.getLiveStream()
-    }
+    this.playVideo()
   },
   watch: {
-    'channel.channelId': function (channelId) {
-      if (channelId) {
-        this.getLiveStream()
+    'videoId': function (videoId) {
+      if (this.player) {
+        this.player.loadVideoById(videoId)
+      } else {
+        this.playVideo()
       }
+      window.scrollTo(0, 0)
     }
   }
-
 }
 </script>
 
