@@ -1,3 +1,8 @@
+# Trigger a build
+cd ..
+npm run build
+cd app
+
 # Clear current files
 rm -rf www/static www/index.html
 
