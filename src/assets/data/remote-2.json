@@ -234,7 +234,19 @@
     			"channelId": "UCsPsEKy0BeYpuLW5IGoTDrw",
     			"logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/suprabhaatham.jpg",
     			"online": true
-    		}
+    		},
+        {
+          "name": "Public Kerala",
+          "channelId": "UCKf_OTLZJb-9DdBKPPF3l6A",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/public-kerala.jpg",
+          "online": true
+        },
+        {
+          "name": "MFlint Media",
+          "channelId": "UCwWjIVRnK0-vSYgDNCL3-4Q",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mflint.jpg",
+          "online": true
+        }
     	]
     }
   ]
