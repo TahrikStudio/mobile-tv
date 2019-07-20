@@ -14,7 +14,7 @@
       <div v-if="!loaded" class="loader"></div>
     </div>
     <a class="external" @click="fullscreen" v-if="loaded"><img src="../assets/meta/fullscreen.svg">Play Fullscreen</a>
-    <Viewers v-if="videoId" :videoId="videoId"></Viewers>
+    <Viewers v-if="videoId && !isFullscreen" :videoId="videoId"></Viewers>
     <router-link class="link" :to="{name: 'Videos', params: {categoryId: categoryId, channelId: channelId, live: true}}">
       Latest videos from {{channel.name}}
     </router-link>
@@ -33,7 +33,9 @@ export default {
     return {
       loaded: false,
       error: false,
-      videoId: false
+      videoId: false,
+      isFullscreen: false,
+      self: {}
     }
   },
   components: {
@@ -79,6 +81,7 @@ export default {
       var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
 
       if (fullscreenElement != null) {
+        this.isFullscreen = true
         screen.orientation.lock('landscape')
         if (window.plugins) window.plugins.insomnia.keepAwake()
         /* global admob */
@@ -90,6 +93,7 @@ export default {
           AndroidFullScreen.immersiveMode(this.fullscreenSuccess, this.fullscreenError)
         }
       } else {
+        this.isFullscreen = false
         screen.orientation.lock('portrait')
         if (window.plugins) window.plugins.insomnia.allowSleepAgain()
         /* global admob */
@@ -147,6 +151,23 @@ export default {
         }
       }
 
+      function getFromSession () {
+        try {
+          if (window.localStorage.getItem(_self.channel.channelId)) {
+            // Could not retrieve live stream id. Try with previously retrieved id.
+            _self.videoId = window.localStorage.getItem(_self.channel.channelId)
+            _self.$nextTick(function () {
+              loader()
+            })
+          }
+        } catch (e) {
+          _self.error = {
+            'message': 'Failed to retrieve live stream id from session',
+            'technical': e
+          }
+        }
+      }
+
       axios.get('https://www.googleapis.com/youtube/v3/search',
         {
           params: {
@@ -162,11 +183,13 @@ export default {
           let data = response.data
           try {
             _self.videoId = data.items[0].id.videoId
+            window.localStorage.setItem(_self.channel.channelId, _self.videoId)
             _self.$nextTick(function () {
               loader()
             })
           } catch (e) {
             console.error(e)
+            getFromSession()
             _self.error = {
               'message': 'No live streaming available at the moment. Please try after some time',
               'technical': e
@@ -174,6 +197,7 @@ export default {
           }
         }).catch(function (error) {
           console.error(error)
+          getFromSession()
           _self.error = {
             'message': 'No live streaming available at the moment. Please try after some time',
             'technical': error

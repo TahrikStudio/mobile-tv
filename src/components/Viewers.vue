@@ -40,6 +40,7 @@ export default {
       clearTimeout(this.timeout)
       this.timeout = false
     }
+    console.log('closed count')
   },
   data () {
     return {
