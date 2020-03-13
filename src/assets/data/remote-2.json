@@ -270,13 +270,13 @@
           "name": "Karikku",
           "channelId": "UC2bNrKQbJLphxNCd6BSnTkA",
           "online": true,
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/karikku.jpg",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/karikku.jpg"
         },
         {
           "name": "Alambanz",
           "channelId": "UCNwQlYWHb_MQ5Swp1zW91dQ",
           "online": true,
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/alambanz.jpg",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/alambanz.jpg"
         }
       ]
     }
