@@ -6,7 +6,7 @@
       </h2>
     </div>
     <div class="channels">
-      <div v-bind:key="index" class="channel" v-for="(channel, index) in category.channels">
+      <div v-bind:key="index" class="channel" v-if="!channel.hide" v-for="(channel, index) in category.channels">
         <router-link :to="{name: channel.online ? 'Videos':'Channel', params: {categoryId: categoryId, channelId: index}}">
           <img v-if="channel.logo" :src="channel.logo">
           <img v-else src="../assets/logo/placeholder.png">
@@ -15,6 +15,9 @@
         </router-link>
       </div>
     </div>
+    <router-link v-if="hasLiveStreaming" class="link" :to="{name: 'Viewership', params: {categoryId: categoryId}}">
+    Youtube Live Viewership Rank
+    </router-link>
   </div>
 </template>
 
@@ -28,6 +31,13 @@ export default {
     },
     category () {
       return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId] : {channels: []}
+    },
+    hasLiveStreaming () {
+      for (let channel of this.category.channels) {
+        if (!channel.online) {
+          return true
+        }
+      }
     }
   }
 }
@@ -59,6 +69,11 @@ export default {
   display: block;
   margin: auto;
   max-width: 80%;
-  max-height: 84px
+  max-height: 84px;
+  border-radius: .3rem
+}
+.link {
+  margin: 2rem 0;
+  display: block
 }
 </style>

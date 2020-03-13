@@ -5,6 +5,7 @@ import Category from '@/components/Category'
 import Channel from '@/components/Channel'
 import Update from '@/components/Update'
 import Videos from '@/components/Videos'
+import Viewership from '@/components/Viewership'
 
 Vue.use(Router)
 
@@ -21,7 +22,7 @@ export default new Router({
       component: Category
     },
     {
-      path: '/category/:categoryId/channel/:channelId',
+      path: '/category/:categoryId/channel/:channelId/:fromRank?',
       name: 'Channel',
       component: Channel
     },
@@ -34,6 +35,11 @@ export default new Router({
       path: '/update',
       name: 'Update',
       component: Update
+    },
+    {
+      path: '/viewership/:categoryId',
+      name: 'Viewership',
+      component: Viewership
     }
   ]
 })

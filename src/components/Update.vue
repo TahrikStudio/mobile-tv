@@ -26,6 +26,9 @@
       </table>
       <a id="update" v-if="updateAvailable" @click="update"><img class="icon" src="../assets/meta/cloud-white.svg">Update Now</a>
       <p v-else>No update available</p>
+      <hr>
+      <h2>Log Monitor</h2>
+      <p style="text-align: left;" v-html="log"></p>
     </div>
   </div>
 </template>
@@ -53,6 +56,9 @@ export default {
     updateAvailable: function () {
       // return true
       return this.latestVersion !== 'NA' && this.latestVersion > this.buildInfo.version
+    },
+    log: function () {
+      return window.log
     }
   }
 }

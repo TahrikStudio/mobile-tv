@@ -14,7 +14,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'Video',
   props: {
@@ -29,7 +28,6 @@ export default {
   },
   methods: {
     fullscreenSuccess: function () {
-      console.log('fullscreen success')
     },
     fullscreenError: function (error) {
       console.log('fullscreen error' + error)
@@ -98,6 +96,16 @@ export default {
         window.scrollTo(0, 0)
       }
 
+      function onPlayerStateChange (event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          console.log('playing video')
+          if (window.plugins) window.plugins.insomnia.keepAwake()
+        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+          console.log('video paused or ended')
+          if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+        }
+      }
+
       function takeControl () {
         if (_self.videoId) {
           _self.player = new YT.Player('video-frame', {
@@ -105,7 +113,8 @@ export default {
             width: '100%',
             height: '100%',
             events: {
-              'onReady': onPlayerReady
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
             }
           })
         }
@@ -132,6 +141,10 @@ export default {
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
     document.addEventListener('pause', this.stopVideo)
     this.playVideo()
+  },
+  beforeDestroy: function () {
+    console.log('destroying..')
+    if (window.plugins) window.plugins.insomnia.allowSleepAgain()
   },
   watch: {
     'videoId': function (videoId) {

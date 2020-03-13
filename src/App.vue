@@ -9,6 +9,15 @@ import axios from 'axios'
 import json from './assets/data/data.json'
 import {initializeRating} from './assets/script/rating.js'
 const STORAGE_KEY = 'mobile-tv-json'
+window.log = ''
+if (!console._log_old) {
+  console._log_old = console.log
+  console.log = function (msg) {
+    console._log_old(msg)
+    window.log += Date() + ' ' + msg + '<br>'
+  }
+  console.error = console.log
+}
 
 export default {
   name: 'App',
@@ -29,14 +38,34 @@ export default {
           admob.banner.config({
             id: 'ca-app-pub-6380671811722843/7999087406',
             isTesting: false,
-            autoShow: true
+            autoShow: false
           })
           admob.banner.prepare()
-          admob.banner.show()
+
+          admob.interstitial.config({
+            id: 'ca-app-pub-6380671811722843/4584986697',
+            autoShow: false
+          })
+          admob.interstitial.prepare()
+
+          document.addEventListener('admob.banner.events.LOAD', function () {
+            admob.banner.show()
+          })
+
+          document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
+            admob.interstitial.prepare()
+          })
+          window.adPeriod = 0
         }, 500)
       }
 
       initializeRating()
+
+      console.log('plugins loaded')
+
+      console.log(JSON.stringify(window.plugins))
+
+      console.log(JSON.strigify(window.cordova.plugins))
     },
     onBackKeyDown: function (e) {
       e.preventDefault()
@@ -84,7 +113,7 @@ export default {
 
 <style>
 :root {
-  --primary-color: #0084b4;
+  --primary-color: #00407f;
 }
 html {
   background: #f5f5f5;

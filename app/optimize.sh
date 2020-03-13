@@ -1,5 +1,5 @@
 cd res
-optipng -o7 splash.png
+optipng -o7 drawable/splash.png
 for file in *
 do
 	if [ -d $file ]

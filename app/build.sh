@@ -1,19 +1,19 @@
-# Trigger a build
-#cd ..
-#npm run build
-#cd app
+# # Trigger a build
+# cd ..
+# npm run build
+# cd app
 
-# Clear current files
-rm -rf www/static www/index.html
+# # Clear current files
+# rm -rf www/static www/index.html
 
-# Copy sources
-cp -r ../dist/* www/
-rm www/static/css/*.map
-rm www/static/js/*.map
+# # Copy sources
+# cp -r ../dist/* www/
+# rm www/static/css/*.map
+# rm www/static/js/*.map
 
-# Replace
-sed -i 's/\/static/.\/static/g' www/index.html
-sed -i 's/\/static\/img/\.\.\/img/g' www/static/css/app*.css
+# # Replace
+# sed -i 's/\/static/.\/static/g' www/index.html
+# sed -i 's/\/static\/img/\.\.\/img/g' www/static/css/app*.css
 
 export ANDROID_HOME=/home/niyasc/Development
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
@@ -39,6 +39,7 @@ EOT
 
 export ORG_GRADLE_PROJECT_cdvReleaseSigningPropertiesFile=../release.properties 
 cordova build --release android
+# cordova build android
 rm platforms/android/release.properties
 
 echo "Build completed, trying to kill java daeomon"

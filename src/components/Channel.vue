@@ -2,7 +2,7 @@
   <div>
     <div class="nav">
       <h2>
-        <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{channel.name}}
+        <router-link id="back" :to="{name: fromRank ? 'Viewership' : 'Category', params: {categoryId: categoryId}}"><img class="icon" src="../assets/meta/back.svg"></router-link>{{channel.name}}
       </h2>
     </div>
     <div class="video-responsive">
@@ -53,6 +53,9 @@ export default {
     },
     channel () {
       return this.$store.state.data.categories ? this.$store.state.data.categories[this.categoryId].channels[this.channelId] : {name: ''}
+    },
+    fromRank () {
+      return this.$route.params.fromRank ? this.$route.params.fromRank : false
     }
   },
   methods: {
@@ -83,7 +86,6 @@ export default {
       if (fullscreenElement != null) {
         this.isFullscreen = true
         screen.orientation.lock('landscape')
-        if (window.plugins) window.plugins.insomnia.keepAwake()
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.hide()
@@ -95,7 +97,6 @@ export default {
       } else {
         this.isFullscreen = false
         screen.orientation.lock('portrait')
-        if (window.plugins) window.plugins.insomnia.allowSleepAgain()
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.show()
@@ -127,6 +128,16 @@ export default {
         document.getElementsByTagName('iframe')[0].setAttribute(_self.$options._scopeId, '')
       }
 
+      function onPlayerStateChange (event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          console.log('playing video')
+          if (window.plugins) window.plugins.insomnia.keepAwake()
+        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+          console.log('video paused or ended')
+          if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+        }
+      }
+
       function takeControl () {
         if (_self.videoId) {
           _self.player = new YT.Player('video-frame', {
@@ -134,7 +145,8 @@ export default {
             width: '100%',
             height: '100%',
             events: {
-              'onReady': onPlayerReady
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
             }
           })
         }
@@ -217,6 +229,9 @@ export default {
       this.getLiveStream()
     }
   },
+  beforeDestroy: function () {
+    if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+  },
   watch: {
     'channel.channelId': function (channelId) {
       if (channelId) {
@@ -224,7 +239,6 @@ export default {
       }
     }
   }
-
 }
 </script>
 

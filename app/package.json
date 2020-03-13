@@ -12,7 +12,7 @@
   "dependencies": {
     "cordova": "^9.0.0",
     "cordova-admob-sdk": "^0.21.0",
-    "cordova-android": "^7.1.4",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-admob-free": "^0.24.0",
     "cordova-plugin-apprate": "^1.4.0",
     "cordova-plugin-buildinfo": "^2.0.2",
