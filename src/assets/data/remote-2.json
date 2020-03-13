@@ -2,9 +2,7 @@
   "meta": {
     "version": "1.3.0"
   },
-  "externalScripts": [
-
-  ],
+  "externalScripts": [],
   "categories": [
     {
       "name": "English News (World)",
@@ -219,8 +217,8 @@
       ]
     },
     {
-    	"name": "Online TV",
-    	"channels" : [
+      "name": "Online TV",
+      "channels": [
         {
           "name": "Asiaville Malayalam",
           "channelId": "UCq6GEVYEsW6UXPZVfRsyAgA",
@@ -234,36 +232,53 @@
           "online": true
         },
         {
-         "name": "Thejas News",
-         "channelId": "UC2CCDdUzUzrIhcML7GkfGxg",
-         "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/thejas.jpg",
-         "online": true
-       },
-       {
-         "name": "Suprabhaatham Online",
-         "channelId": "UCsPsEKy0BeYpuLW5IGoTDrw",
-         "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/suprabhaatham.jpg",
-         "online": true
-       },
-       {
-         "name": "Marunadan TV",
-         "channelId": "UCBeF-3nSRWwsGttfAA3WSvA",
-         "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/marunadan.jpg",
-         "online": true
-       },
-       {
-        "name": "Public Kerala",
-        "channelId": "UCKf_OTLZJb-9DdBKPPF3l6A",
-        "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/public-kerala.jpg",
-        "online": true
-      },
-      {
-        "name": "MFlint Media",
-        "channelId": "UCwWjIVRnK0-vSYgDNCL3-4Q",
-        "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mflint.jpg",
-        "online": true
-      }
-    ]
+          "name": "Thejas News",
+          "channelId": "UC2CCDdUzUzrIhcML7GkfGxg",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/thejas.jpg",
+          "online": true
+        },
+        {
+          "name": "Suprabhaatham Online",
+          "channelId": "UCsPsEKy0BeYpuLW5IGoTDrw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/suprabhaatham.jpg",
+          "online": true
+        },
+        {
+          "name": "Marunadan TV",
+          "channelId": "UCBeF-3nSRWwsGttfAA3WSvA",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/marunadan.jpg",
+          "online": true
+        },
+        {
+          "name": "Public Kerala",
+          "channelId": "UCKf_OTLZJb-9DdBKPPF3l6A",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/public-kerala.jpg",
+          "online": true
+        },
+        {
+          "name": "MFlint Media",
+          "channelId": "UCwWjIVRnK0-vSYgDNCL3-4Q",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mflint.jpg",
+          "online": true
+        }
+      ]
+    },
+    {
+      "name": "Entertainment (Malayalam)",
+      "channels": [
+        {
+          "name": "Karikku",
+          "channelId": "UC2bNrKQbJLphxNCd6BSnTkA",
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/karikku.jpg",
+        },
+        {
+          "name": "Alambanz",
+          "channelId": "UCNwQlYWHb_MQ5Swp1zW91dQ",
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/alambanz.jpg",
+        }
+      ]
     }
   ]
 }
