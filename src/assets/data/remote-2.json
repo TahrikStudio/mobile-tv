@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "1.3.0"
+    "version": "1.3.1"
   },
   "externalScripts": [],
   "categories": [
@@ -264,19 +264,33 @@
       ]
     },
     {
-      "name": "Entertainment (Malayalam)",
+      "name": "Others (Malayalam)",
       "channels": [
         {
-          "name": "Karikku",
-          "channelId": "UC2bNrKQbJLphxNCd6BSnTkA",
-          "online": true,
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/karikku.jpg"
+          "name": "Village Food Channel",
+          "channelId": "UCuSD-BXA1p8S3HfE8LsEkHA",
+          "online": true
+        },
+        {
+          "name": "Mallu Traveller",
+          "channelId": "UCUSFb3Dwt8AdfDIxdHTlNuA",
+          "online": true
         },
         {
           "name": "Alambanz",
           "channelId": "UCNwQlYWHb_MQ5Swp1zW91dQ",
           "online": true,
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/alambanz.jpg"
+        },
+        {
+          "name": "Safari TV",
+          "channelId": "UCfyulcK9tP84epquAb460UQ",
+          "online": true
+        },
+        {
+          "name": "Tech, Travel, Eat",
+          "channelId": "UCeoRAN5sr02w8_9aFWxIM4g",
+          "online": true
         }
       ]
     }
