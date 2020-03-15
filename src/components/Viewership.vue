@@ -32,6 +32,7 @@
 
 import axios from 'axios'
 import CONST from '../assets/script/secret.js'
+import CommonUtils from '../common/CommonUtils'
 
 export default {
   name: 'Viewership',
@@ -111,10 +112,9 @@ export default {
     /* global admob */
     /* eslint no-undef: ["error", { "typeof": true }] */
     if (window.admob) {
-      if (window.adPeriod === 0) {
+      if (CommonUtils.canShowAd()) {
         admob.interstitial.show()
       }
-      window.adPeriod = (window.adPeriod + 1) % 5
     }
     let index = 0
     for (let channel of this.category.channels) {

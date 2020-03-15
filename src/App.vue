@@ -8,6 +8,7 @@
 import axios from 'axios'
 import json from './assets/data/data.json'
 import {initializeRating} from './assets/script/rating.js'
+import CommonUtils from './common/CommonUtils'
 const STORAGE_KEY = 'mobile-tv-json'
 window.log = ''
 if (!console._log_old) {
@@ -54,8 +55,8 @@ export default {
 
           document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
             admob.interstitial.prepare()
+            CommonUtils.setAdShown()
           })
-          window.adPeriod = 0
         }, 500)
       }
 
