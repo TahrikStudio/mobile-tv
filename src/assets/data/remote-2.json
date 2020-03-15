@@ -232,6 +232,12 @@
           "online": true
         },
         {
+          "name": "Madhyamam",
+          "channelId": "UCYMKYAtH2zhXgaCwYEmQE6A",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/madhyamam.jpg",
+          "online": "true"
+        },
+        {
           "name": "Thejas News",
           "channelId": "UC2CCDdUzUzrIhcML7GkfGxg",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/thejas.jpg",
@@ -269,12 +275,14 @@
         {
           "name": "Village Food Channel",
           "channelId": "UCuSD-BXA1p8S3HfE8LsEkHA",
-          "online": true
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/vfc.jpg"
         },
         {
           "name": "Mallu Traveller",
           "channelId": "UCUSFb3Dwt8AdfDIxdHTlNuA",
-          "online": true
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mallu-traveller.jpg"
         },
         {
           "name": "Alambanz",
@@ -285,12 +293,14 @@
         {
           "name": "Safari TV",
           "channelId": "UCfyulcK9tP84epquAb460UQ",
-          "online": true
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/safari.jpg"
         },
         {
           "name": "Tech, Travel, Eat",
           "channelId": "UCeoRAN5sr02w8_9aFWxIM4g",
-          "online": true
+          "online": true,
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/techtraveleat.jpg"
         }
       ]
     }
