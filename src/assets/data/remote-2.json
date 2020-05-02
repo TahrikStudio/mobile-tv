@@ -125,53 +125,63 @@
         {
           "name": "MediaOne",
           "channelId": "UC-f7r46JhYv78q5pGrO6ivA",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.jpg"
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.jpg",
+          "color": "#00407f"
         },
         {
           "name": "Asianet News",
+          "color": "#be0719",
           "channelId": "UCf8w5m0YsRa8MHQ5bwSGmbw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/asianet-news.png"
         },
         {
           "name": "Manorama News",
+          "color": "#438bdd",
           "channelId": "UCP0uG-mcMImgKnJz-VjJZmQ",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/manorama-news.png"
         },
         {
           "name": "Mathrubhumi News",
+          "color": "#006aaa",
           "channelId": "UCwXrBBZnIh2ER4lal6WbAHw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mathrubhumi.png"
         },
         {
           "name": "News 18 Kerala",
           "channelId": "UC-mMi78WJST4N5o8_i1FoXw",
+          "color": "#ee1c25",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/news18.png",
           "message": "Presently, we don't support News streaming as they don't permit us to use their stream from YouTube"
         },
         {
           "name": "Reporter Live",
+          "color": "#b30101",
           "channelId": "UCFx1nseXKTc1Culiu3neeSQ",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/reporter.png"
         },
         {
           "name": "People TV",
+          "color": "#f60003",
           "channelId": "UCnEvxaWfVL91XIYuyQRO5QA",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
         },
         {
           "name": "Mangalam News",
+          "color": "#f60003",
           "channelId": "UCbdTuwZxsxuxAp_UGbl7YpA",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
         },
         {
           "name": "Channel 24",
+          "color": "#e7ab03",
           "channelId": "UCup3etEdjyF1L3sRbU-rKLw",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
         },
         {
           "name": "Janam TV",
           "channelId": "UCNVkxRPqsBNejO6B9thG9Xw",
-          "hide": true
+          "hide": true,
+          "color": "#f78217"
         }
       ]
     },
