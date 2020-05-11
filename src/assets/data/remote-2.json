@@ -123,12 +123,6 @@
       "name": "Malayalam News",
       "channels": [
         {
-          "name": "MediaOne",
-          "channelId": "UC-f7r46JhYv78q5pGrO6ivA",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.jpg",
-          "color": "#00407f"
-        },
-        {
           "name": "Asianet News",
           "color": "#be0719",
           "channelId": "UCf8w5m0YsRa8MHQ5bwSGmbw",
@@ -139,6 +133,18 @@
           "color": "#438bdd",
           "channelId": "UCP0uG-mcMImgKnJz-VjJZmQ",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/manorama-news.png"
+        },
+        {
+          "name": "MediaOne",
+          "channelId": "UC-f7r46JhYv78q5pGrO6ivA",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mediaone.jpg",
+          "color": "#00407f"
+        },
+        {
+          "name": "Channel 24",
+          "color": "#e7ab03",
+          "channelId": "UCup3etEdjyF1L3sRbU-rKLw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
         },
         {
           "name": "Mathrubhumi News",
@@ -166,16 +172,22 @@
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/people.png"
         },
         {
+          "name": "Jaihind TV",
+          "color": "#2aad4a",
+          "channelId": "UCmR-wUbC5jByypYgTynuzqg",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/jaihind.jpg"
+        },
+        {
           "name": "Mangalam News",
           "color": "#f60003",
           "channelId": "UCbdTuwZxsxuxAp_UGbl7YpA",
           "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/mangalam.png"
         },
         {
-          "name": "Channel 24",
-          "color": "#e7ab03",
-          "channelId": "UCup3etEdjyF1L3sRbU-rKLw",
-          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/24.png"
+          "name": "Jeevan TV",
+          "color": "#26347a",
+          "channelId": "UCjX2Z1XGWEbKEGgKMACbhkw",
+          "logo": "https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/logo/jeevan.jpg"
         },
         {
           "name": "Janam TV",
