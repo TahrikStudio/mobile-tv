@@ -11,7 +11,10 @@ export function initializeRating () {
         }
       },
       useLanguage: 'en',
-      simpleMode: true
+      simpleMode: true,
+      openUrl: function (url) {
+        window.open(url, '_blank', 'location=yes')
+      }
     }
     AppRate.promptForRating(false)
   }

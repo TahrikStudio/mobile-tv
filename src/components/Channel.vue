@@ -11,9 +11,12 @@
         technical : {{error.technical}}
       </div>
       <div id="video-frame"></div>
-      <div v-if="!loaded" class="loader"></div>
+      <Loader v-if="!loaded && !error" />
     </div>
     <a class="external" @click="fullscreen" v-if="loaded"><img src="../assets/meta/fullscreen.svg">Play Fullscreen</a>
+    <a class="external" @click="share" v-if="loaded">
+      <img src="../assets/meta/share.svg">Share
+    </a>
     <Viewers v-if="videoId && !isFullscreen" :videoId="videoId"></Viewers>
     <router-link class="link" :to="{name: 'Videos', params: {categoryId: categoryId, channelId: channelId, live: true}}">
       Latest videos from {{channel.name}}
@@ -24,8 +27,10 @@
 
 <script>
 import CONST from '../assets/script/secret.js'
+import Constants from '../common/Constants.js'
 import axios from 'axios'
 import Viewers from './Viewers'
+import Loader from './Loader'
 
 export default {
   name: 'Channel',
@@ -39,7 +44,8 @@ export default {
     }
   },
   components: {
-    Viewers
+    Viewers,
+    Loader
   },
   computed: {
     categoryId () {
@@ -59,6 +65,13 @@ export default {
     }
   },
   methods: {
+    share: function () {
+      let shareMessage = `Watch ${this.channel.name} Live: https://youtu.be/${this.videoId}${Constants.APP_LINK}`
+      console.log(shareMessage)
+      if (window.plugins && window.plugins.socialsharing) {
+        window.plugins.socialsharing.share(shareMessage)
+      }
+    },
     fullscreenSuccess: function () {
       console.log('fullscreen success')
     },
@@ -194,7 +207,9 @@ export default {
         .then(function (response) {
           let data = response.data
           try {
+            console.log(data)
             _self.videoId = data.items[0].id.videoId
+            console.log('retrieved')
             window.localStorage.setItem(_self.channel.channelId, _self.videoId)
             _self.$nextTick(function () {
               loader()
@@ -246,14 +261,6 @@ export default {
 <style scoped>
 h2 {
   margin-top: 0;
-}
-.loader {
-  background: url('../assets/meta/loading.gif');
-  background-size: 40px;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 100px;
-  margin-top: 10vh;
 }
 .video-responsive{
   margin-top: 5vh;

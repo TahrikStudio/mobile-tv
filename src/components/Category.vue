@@ -7,24 +7,43 @@
     </div>
     <div class="channels">
       <div v-bind:key="index" class="channel" v-if="!channel.hide" v-for="(channel, index) in category.channels">
-        <router-link :to="{name: channel.online ? 'Videos':'Channel', params: {categoryId: categoryId, channelId: index}}">
+        <router-link @click="load=true" :to="{name: channel.online ? 'Videos':'Channel', params: {categoryId: categoryId, channelId: index}}">
           <img v-if="channel.logo" :src="channel.logo">
           <img v-else src="../assets/logo/placeholder.png">
-          <br/>
+          <div class="name">
           {{channel.name}}
+          </div>
         </router-link>
       </div>
     </div>
-    <router-link v-if="hasLiveStreaming" class="link" :to="{name: 'Viewership', params: {categoryId: categoryId}}">
+    <router-link @click="load=true" v-if="hasLiveStreaming" class="link" :to="{name: 'Viewership', params: {categoryId: categoryId}}">
     Youtube Live Viewership Rank
     </router-link>
+    <router-link @click="load=true" class="link" :to="{name: 'Subscribers', params: {categoryId: categoryId}}">
+    Youtube Subscriber Rank
+    </router-link>
+    <Loader v-if="load"/>
   </div>
 </template>
 
 <script>
+import Loader from './Loader'
 
 export default {
   name: 'Category',
+  components: {
+    Loader
+  },
+  mounted: function () {
+    this.$nextTick(() => {
+      this.load = false
+    })
+  },
+  data: function () {
+    return {
+      load: true
+    }
+  },
   computed: {
     categoryId () {
       return this.$route.params.categoryId
@@ -56,8 +75,11 @@ export default {
     padding: .5em;
     box-shadow: 1px 1px 1px #ddd;
     position: relative;
-    height: 140px;
+    height: 120px;
     word-break: break-all
+}
+.channel:active {
+  background: #eee;
 }
 .channel a {
   position: absolute;
@@ -72,8 +94,19 @@ export default {
   max-height: 84px;
   border-radius: .3rem
 }
+.channel .name {
+  height: 2rem;
+  margin-top: .5rem;
+}
 .link {
-  margin: 2rem 0;
-  display: block
+  margin: 1rem 1rem;
+  display: block;
+  background: white;
+  padding: 1rem 0;
+  box-shadow: 1px 1px 1px #ddd;
+  text-decoration: none;
+}
+.link:active {
+  background: #eee;
 }
 </style>

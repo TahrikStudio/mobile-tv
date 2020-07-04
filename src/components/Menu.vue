@@ -5,7 +5,7 @@
     </div>
     <div class="categories">
       <div class="category" v-bind:key="index" v-for="(category, index) in categories">
-        <router-link :to="{name: 'Category', params: {categoryId: index}}">
+        <router-link @click="loader=true" :to="{name: 'Category', params: {categoryId: index}}">
           <img class="icon" src="../assets/meta/tv.svg">{{category.name}}
         </router-link>
       </div>
@@ -27,12 +27,17 @@
 
 <script>
 import {openRateDialog} from '../assets/script/rating.js'
+import Loader from './Loader'
+
 export default {
   name: 'Menu',
   computed: {
     categories () {
       return this.$store.state.data.categories || []
     }
+  },
+  components: {
+    Loader
   },
   methods: {
     exitApp: function () {
@@ -48,8 +53,12 @@ export default {
       openRateDialog()
     }
   },
+  mounted: function () {
+    this.loaded = true
+  },
   data () {
     return {
+      loaded: false
     }
   }
 }
@@ -70,6 +79,9 @@ export default {
   text-align: left;
   text-transform: uppercase;
   box-shadow: 1px 1px 1px 1px #eee;
+}
+.category:active {
+  background: #eee;
 }
 hr {
   border: none;

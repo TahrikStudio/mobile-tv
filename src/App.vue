@@ -166,13 +166,15 @@ body {
 }
 .external {
   background: var(--primary-color);
-  padding: 1rem;
   color: white;
-  display: block;
-  margin-top: 5vh
+  display: inline-block;
+  margin-top: 5vh;
+  line-height: 3rem;
+  padding: 0 1rem;
 }
 .external img {
   vertical-align: middle;
+  padding-right: .2rem
 }
 .link {
   color: var(--primary-color);

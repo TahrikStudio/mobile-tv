@@ -4,6 +4,13 @@
       <h2>
         <router-link id="back" :to="{name: 'Category', params: {categoryId: categoryId}}"><img class="icon" src="../assets/meta/back.svg"></router-link>YouTube Viewership</h2>
     </div>
+    <GChart v-if="chartData.length"
+    type="BarChart"
+    :data="chartData"
+    :options="chartOptions"
+    @ready="storeChart"
+    />
+    <Loader v-else />
     <table>
       <thead>
         <th>Rank</th>
@@ -24,7 +31,12 @@
           </td>
       </tr>
     </table>
+
     <a class="external" :class="{disabled: !refreshEligible}" @click="refresh"><img src="../assets/meta/refresh.svg">Refresh</a>
+    <div class="external" @click="share">
+      <img src="../assets/meta/share.svg">
+      Share
+    </div>
   </div>
 </template>
 
@@ -33,9 +45,16 @@
 import axios from 'axios'
 import CONST from '../assets/script/secret.js'
 import CommonUtils from '../common/CommonUtils'
+import Constants from '../common/Constants.js'
+import { GChart } from 'vue-google-charts'
+import Loader from './Loader'
 
 export default {
   name: 'Viewership',
+  components: {
+    GChart,
+    Loader
+  },
   methods: {
     fetchViewCount: function (channel) {
       if (!channel.videoId) return
@@ -56,6 +75,7 @@ export default {
               if (b.count) return 1
               return 0
             })
+            _self.updateGraph()
             _self.$forceUpdate()
           } catch (error) {
             console.error(error)
@@ -99,14 +119,36 @@ export default {
       }, 5000)
     },
     refresh: function () {
+      if (!this.refreshEligible) return
       this.resetEligibility()
       let _self = this
       for (let channel of this.channels) {
         _self.fetchViewCount(channel)
       }
+    },
+    updateGraph: function () {
+      let graphData = [['Channel', 'Viewers', { role: 'annotation' }, {role: 'style'}]]
+      let colors = []
+      for (let channel of this.channels) {
+        let count = channel.count ? channel.count : 0
+        let color = channel.color ? channel.color : CommonUtils.randomColor()
+        graphData.push([channel.name, Number(count), count, color])
+        colors.push(color)
+      }
+      this.chartOptions.colors = colors
+      this.chartData = graphData
+    },
+    share: function () {
+      console.log(this.chartObj.getImageURI())
+      if (!window.plugins || !window.plugins.socialsharing) return
+      window.plugins.socialsharing.share(this.chartOptions.title.split('\n')[0] + ' created with Englighten News App - https://bit.ly/2z4ARiS', null, this.chartObj.getImageURI(), null)
+    },
+    storeChart: function (chart, google) {
+      this.chartObj = chart
     }
   },
   mounted: function () {
+    this.chartOptions.title = 'YouTube Live Viewers\n' + (new Date()).toLocaleString()
     // this.fetchViewCount()
     console.log('mounted')
     /* global admob */
@@ -138,7 +180,9 @@ export default {
   data: function () {
     return {
       channels: [],
-      refreshEligible: false
+      refreshEligible: false,
+      chartData: [],
+      chartOptions: Constants.chartOptions
     }
   },
   watch: {
@@ -148,7 +192,9 @@ export default {
       for (let channel of this.category.channels) {
         if (!channel.online) {
           channel.index = index
-          this.getVideoId(channel)
+          if (!channel.videoId) {
+            this.getVideoId(channel)
+          }
           this.channels.push(channel)
         }
         index += 1

@@ -6,11 +6,21 @@ import Channel from '@/components/Channel'
 import Update from '@/components/Update'
 import Videos from '@/components/Videos'
 import Viewership from '@/components/Viewership'
+import Subscribers from '@/components/Subscribers'
+import Welcome from '@/components/Welcome'
 
 Vue.use(Router)
 
 export default new Router({
+  scrollBehavior () {
+    return { x: 0, y: 0 }
+  },
   routes: [
+    {
+      path: '/welcome',
+      name: 'Welcome',
+      component: Welcome
+    },
     {
       path: '/',
       name: 'Menu',
@@ -40,6 +50,11 @@ export default new Router({
       path: '/viewership/:categoryId',
       name: 'Viewership',
       component: Viewership
+    },
+    {
+      path: '/subscribers/:categoryId',
+      name: 'Subscribers',
+      component: Subscribers
     }
   ]
 })

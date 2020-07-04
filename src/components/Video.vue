@@ -7,15 +7,24 @@
         technical : {{error.technical}}
       </div>
       <div id="video-frame"></div>
-      <div v-if="!loaded" class="loader"></div>
+      <Loader v-if="!loaded" />
     </div>
     <a class="external" @click="fullscreen" v-if="loaded"><img src="../assets/meta/fullscreen.svg">Play Fullscreen</a>
+    <a class="external" @click="share" v-if="loaded">
+      <img src="../assets/meta/share.svg">Share
+    </a>
   </div>
 </template>
 
 <script>
+import Constants from '../common/Constants.js'
+import Loader from './Loader'
+
 export default {
   name: 'Video',
+  components: {
+    Loader
+  },
   props: {
     videoId: false,
     title: false
@@ -27,6 +36,13 @@ export default {
     }
   },
   methods: {
+    share: function () {
+      let shareMessage = `${this.title} - https://youtu.be/${this.videoId}${Constants.APP_LINK}`
+      console.log(shareMessage)
+      if (window.plugins && window.plugins.socialsharing) {
+        window.plugins.socialsharing.share(shareMessage)
+      }
+    },
     fullscreenSuccess: function () {
     },
     fullscreenError: function (error) {
