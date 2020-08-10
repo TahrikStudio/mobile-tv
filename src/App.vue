@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <router-view/>
+    <Notification v-if="notifications.length" :notification="notifications[0]" @closeApp="closeApp" @proceed="notifications = []"/>
   </div>
 </template>
 
@@ -9,6 +10,8 @@ import axios from 'axios'
 import json from './assets/data/data.json'
 import {initializeRating} from './assets/script/rating.js'
 import CommonUtils from './common/CommonUtils'
+import Constants from './common/Constants'
+import Notification from './components/Notification'
 const STORAGE_KEY = 'mobile-tv-json'
 window.log = ''
 if (!console._log_old) {
@@ -22,6 +25,14 @@ if (!console._log_old) {
 
 export default {
   name: 'App',
+  data: function () {
+    return {
+      notifications: []
+    }
+  },
+  components: {
+    Notification
+  },
   methods: {
     onDeviceReady: function () {
       console.log('device ready')
@@ -76,14 +87,25 @@ export default {
         back.click()
       } else {
         // Exit app
-        if (navigator.app) {
-          navigator.app.exitApp()
-        } else if (navigator.device) {
-          navigator.device.exitApp()
-        } else {
-          window.close()
-        }
+        this.closeApp()
       }
+    },
+    closeApp: function () {
+      if (navigator.app) {
+        navigator.app.exitApp()
+      } else if (navigator.device) {
+        navigator.device.exitApp()
+      } else {
+        window.close()
+      }
+    },
+    checkNotifications: function () {
+      let _self = this
+      axios.get(`${Constants.REMOTE}notifications`).then(function (response) {
+        _self.notifications = response.data
+      }).catch(function (err) {
+        console.log(err)
+      })
     }
   },
   mounted () {
@@ -94,7 +116,7 @@ export default {
 
     let _self = this
     // Try to load remote data, save it on local
-    axios.get('https://raw.githubusercontent.com/LibreAppFoundation/mobile-tv/master/src/assets/data/remote-2.json').then(function (response) {
+    axios.get(`${Constants.REMOTE}getData`).then(function (response) {
       _self.$store.commit('setData', response.data)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(response.data))
     }).catch(function (err) {
@@ -107,6 +129,8 @@ export default {
     document.head.appendChild(script)
 
     document.addEventListener('deviceready', this.onDeviceReady)
+
+    this.checkNotifications()
   }
 }
 

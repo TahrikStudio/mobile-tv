@@ -43,7 +43,6 @@
 <script>
 
 import axios from 'axios'
-import CONST from '../assets/script/secret.js'
 import CommonUtils from '../common/CommonUtils'
 import Constants from '../common/Constants.js'
 import { GChart } from 'vue-google-charts'
@@ -56,19 +55,14 @@ export default {
     Loader
   },
   methods: {
-    fetchViewCount: function (channel) {
-      if (!channel.videoId) return
+    fetchViewCount: function (channelIds) {
       let _self = this
-      axios.get('https://www.googleapis.com/youtube/v3/videos', {
-        params: {
-          part: 'liveStreamingDetails',
-          id: channel.videoId,
-          key: CONST.AUTH_KEY
-        }
-      })
+      axios.post(`${Constants.REMOTE}liveViewers`, channelIds)
         .then(function (response) {
           try {
-            channel.count = response.data.items[0].liveStreamingDetails.concurrentViewers
+            for (let channel of _self.channels) {
+              channel.count = response.data[channel.channelId]
+            }
             _self.channels.sort((a, b) => {
               if (a.count && b.count) return b.count - a.count
               if (a.count) return -1
@@ -80,35 +74,6 @@ export default {
           } catch (error) {
             console.error(error)
           }
-        })
-    },
-    getVideoId: function (channel) {
-      let _self = this
-      axios.get('https://www.googleapis.com/youtube/v3/search',
-        {
-          params: {
-            part: 'snippet',
-            channelId: channel.channelId,
-            eventType: 'live',
-            type: 'video',
-            key: CONST.AUTH_KEY
-          }
-        }
-      )
-        .then(function (response) {
-          let data = response.data
-          try {
-            channel.videoId = data.items[0].id.videoId
-            window.localStorage.setItem(channel.channelId, channel.videoId)
-            _self.fetchViewCount(channel)
-          } catch (e) {
-            channel.videoId = window.localStorage.getItem(channel.channelId)
-            _self.fetchViewCount(channel)
-          }
-        }).catch(function (error) {
-          console.log(error)
-          channel.videoId = window.localStorage.getItem(channel.channelId)
-          _self.fetchViewCount(channel)
         })
     },
     resetEligibility: function () {
@@ -141,7 +106,7 @@ export default {
     share: function () {
       console.log(this.chartObj.getImageURI())
       if (!window.plugins || !window.plugins.socialsharing) return
-      window.plugins.socialsharing.share(this.chartOptions.title.split('\n')[0] + ' created with Englighten News App - https://bit.ly/2z4ARiS', null, this.chartObj.getImageURI(), null)
+      window.plugins.socialsharing.share(this.chartOptions.title.split('\n')[0] + Constants.APP_LINK, null, this.chartObj.getImageURI(), null)
     },
     storeChart: function (chart, google) {
       this.chartObj = chart
@@ -159,14 +124,16 @@ export default {
       }
     }
     let index = 0
+    let channelIds = []
     for (let channel of this.category.channels) {
       if (!channel.online) {
-        this.getVideoId(channel)
         this.channels.push(channel)
         channel.index = index
+        channelIds.push(channel.channelId)
       }
       index += 1
     }
+    this.fetchViewCount(channelIds)
     this.resetEligibility()
   },
   computed: {
@@ -189,16 +156,16 @@ export default {
     category: function (category) {
       if (this.channels.length) return
       let index = 0
+      let channelIds = []
       for (let channel of this.category.channels) {
         if (!channel.online) {
-          channel.index = index
-          if (!channel.videoId) {
-            this.getVideoId(channel)
-          }
           this.channels.push(channel)
+          channel.index = index
+          channelIds.push(channel.channelId)
         }
         index += 1
       }
+      this.fetchViewCount(channelIds)
     }
   }
 }

@@ -1,5 +1,6 @@
 export default {
   APP_STORAGE_KEY: 'enlighten',
+  REMOTE: 'https://mighty-shelf-85145.herokuapp.com/',
   AD_INTERVAL: 300000,
   APP_LINK: ' - Shared via Enlighten News App: https://bit.ly/2z4ARiS',
   chartOptions: {

@@ -21,7 +21,6 @@
 <script>
 
 import axios from 'axios'
-import CONST from '../assets/script/secret.js'
 import CommonUtils from '../common/CommonUtils'
 import Constants from '../common/Constants.js'
 import { GChart } from 'vue-google-charts'
@@ -34,20 +33,13 @@ export default {
     Loader
   },
   methods: {
-    getSubscribers: function (channel) {
+    getSubscribers: function (channelIds) {
       let _self = this
-      axios.get('https://www.googleapis.com/youtube/v3/channels',
-        {
-          params: {
-            part: 'statistics',
-            id: channel.channelId,
-            key: CONST.AUTH_KEY
-          }
-        }
-      )
+      axios.post(`${Constants.REMOTE}subscribers`, channelIds)
         .then(function (response) {
-          let data = response.data
-          channel.subscribers = data.items[0].statistics.subscriberCount
+          for (let channel of _self.channels) {
+            channel.subscribers = response.data[channel.channelId]
+          }
           _self.channels.sort((a, b) => {
             if (a.subscribers && b.subscribers) return b.subscribers - a.subscribers
             if (a.subscribers) return -1
@@ -88,13 +80,15 @@ export default {
         admob.interstitial.show()
       }
     }
+    let channelIds = []
     let index = 0
     for (let channel of this.category.channels) {
-      this.getSubscribers(channel)
+      channelIds.push(channel.channelId)
       this.channels.push(channel)
       channel.index = index
       index += 1
     }
+    this.getSubscribers(channelIds)
   },
   computed: {
     categoryId () {
@@ -115,15 +109,19 @@ export default {
     category: function (category) {
       if (this.channels.length) return
       let index = 0
+      let channelIds = []
       for (let channel of this.category.channels) {
         if (!channel.online) {
           channel.index = index
           if (!channel.subscribers) {
-            this.getSubscribers(channel)
+            this.channelIds.push(channel.channelId)
           }
           this.channels.push(channel)
         }
         index += 1
+      }
+      if (channelIds.length > 0) {
+        this.getSubscribers(channelIds)
       }
     }
   }

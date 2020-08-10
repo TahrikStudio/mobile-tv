@@ -21,8 +21,8 @@
 
 <script>
 import axios from 'axios'
-import CONST from '../assets/script/secret.js'
 import Video from './Video'
+import Constants from '../common/Constants.js'
 
 export default {
   name: 'Category',
@@ -54,15 +54,7 @@ export default {
     },
     fetchChannels: function () {
       let _this = this
-      axios.get('https://www.googleapis.com/youtube/v3/search', {
-        params: {
-          part: 'snippet',
-          channelId: this.channel.channelId,
-          key: CONST.AUTH_KEY,
-          order: 'date',
-          maxResults: 8
-        }
-      })
+      axios.get(`${Constants.REMOTE}recentVideos/${this.channel.channelId}`)
         .then(function (response) {
           let data = response.data
           _this.videos = data.items

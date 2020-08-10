@@ -8,7 +8,7 @@
     <div class="video-responsive">
       <div v-if="error">
         {{error.message}}<br/><br/>
-        technical : {{error.technical}}
+        {{error.technical}}
       </div>
       <div id="video-frame"></div>
       <Loader v-if="!loaded && !error" />
@@ -17,7 +17,7 @@
     <a class="external" @click="share" v-if="loaded">
       <img src="../assets/meta/share.svg">Share
     </a>
-    <Viewers v-if="videoId && !isFullscreen" :videoId="videoId"></Viewers>
+    <Viewers v-if="videoId && !isFullscreen" :channelId="channel.channelId"></Viewers>
     <router-link class="link" :to="{name: 'Videos', params: {categoryId: categoryId, channelId: channelId, live: true}}">
       Latest videos from {{channel.name}}
     </router-link>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import CONST from '../assets/script/secret.js'
 import Constants from '../common/Constants.js'
 import axios from 'axios'
 import Viewers from './Viewers'
@@ -193,22 +192,15 @@ export default {
         }
       }
 
-      axios.get('https://www.googleapis.com/youtube/v3/search',
-        {
-          params: {
-            part: 'snippet',
-            channelId: this.channel.channelId,
-            eventType: 'live',
-            type: 'video',
-            key: CONST.AUTH_KEY
-          }
-        }
-      )
+      axios.get(`${Constants.REMOTE}liveStream/${this.channel.channelId}`)
         .then(function (response) {
           let data = response.data
           try {
             console.log(data)
-            _self.videoId = data.items[0].id.videoId
+            if (data === '') {
+              throw new Error('No live streaming found for ' + _self.channel.name)
+            }
+            _self.videoId = data
             console.log('retrieved')
             window.localStorage.setItem(_self.channel.channelId, _self.videoId)
             _self.$nextTick(function () {

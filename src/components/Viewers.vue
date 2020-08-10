@@ -7,28 +7,22 @@
 <script>
 
 import axios from 'axios'
-import CONST from '../assets/script/secret.js'
+import Constants from '../common/Constants.js'
 
 export default {
   name: 'Viewers',
-  props: ['videoId'],
+  props: ['channelId'],
   methods: {
     fetchViewCount: function () {
       let _self = this
-      axios.get('https://www.googleapis.com/youtube/v3/videos', {
-        params: {
-          part: 'liveStreamingDetails',
-          id: this.videoId,
-          key: CONST.AUTH_KEY
-        }
-      })
+      axios.get(`${Constants.REMOTE}liveCount/${this.channelId}`)
         .then(function (response) {
           try {
-            _self.count = response.data.items[0].liveStreamingDetails.concurrentViewers
+            _self.count = response.data
           } catch (error) {
             console.error(error)
           }
-          _self.timeout = setTimeout(_self.fetchViewCount, 10000)
+          _self.timeout = setTimeout(_self.fetchViewCount, 20000)
         })
     }
   },
