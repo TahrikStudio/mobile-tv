@@ -16,7 +16,10 @@ const STORAGE_KEY = 'mobile-tv-json'
 window.log = ''
 if (!console._log_old) {
   console._log_old = console.log
-  console.log = function (msg) {
+  console.log = function (...msgs) {
+    let msg = msgs.reduce((previous, current) => {
+      return previous + ' ' + current
+    })
     console._log_old(msg)
     window.log += Date() + ' ' + msg + '<br>'
   }
@@ -77,7 +80,26 @@ export default {
 
       console.log(JSON.stringify(window.plugins))
 
-      console.log(JSON.strigify(window.cordova.plugins))
+      console.log(JSON.stringify(window.cordova.plugins))
+
+      let _self = this
+      if (window.universalLinks) {
+        console.log('universal links initing')
+        window.universalLinks.subscribe('preview', function (eventData) {
+          console.log('Did launch application from the link: ' + eventData.url)
+          let paths = eventData.url.split('/')
+          let videoId = paths[paths.length - 1]
+          console.log('Video Id', videoId)
+          console.log(this)
+          console.log(_self)
+          _self.$router.push({name: 'Preview', params: {videoId: videoId}})
+        })
+        window.universalLinks.subscribe(null, function (eventData) {
+          console.log('event called without any event')
+        })
+      } else {
+        console.log('univeral links not initing')
+      }
     },
     onBackKeyDown: function (e) {
       e.preventDefault()
@@ -106,6 +128,24 @@ export default {
       }).catch(function (err) {
         console.log(err)
       })
+    },
+    getMetaInfo: function () {
+      if (localStorage.getItem('meta') != null) {
+        console.log('compliance is cached, skipping service call')
+        window.meta = JSON.parse(localStorage.getItem('meta'))
+        return
+      }
+      console.log('proceeding with compliance service call')
+      axios.get(`${Constants.REMOTE}metainfo`).then(function (response) {
+        window.meta = response.data
+        if (window.meta.compliance === false) {
+          console.log('compliance -> false: caching')
+          localStorage.setItem('meta', JSON.stringify(window.meta))
+        }
+      }).catch(function (err) {
+        console.log(err)
+      })
+      console.log('gracefull error log')
     }
   },
   mounted () {
@@ -131,6 +171,8 @@ export default {
     document.addEventListener('deviceready', this.onDeviceReady)
 
     this.checkNotifications()
+
+    this.getMetaInfo()
   }
 }
 

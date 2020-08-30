@@ -8,6 +8,7 @@ import Videos from '@/components/Videos'
 import Viewership from '@/components/Viewership'
 import Subscribers from '@/components/Subscribers'
 import Welcome from '@/components/Welcome'
+import Preview from '@/components/Preview'
 
 Vue.use(Router)
 
@@ -55,6 +56,11 @@ export default new Router({
       path: '/subscribers/:categoryId',
       name: 'Subscribers',
       component: Subscribers
+    },
+    {
+      path: '/preview/:videoId',
+      name: 'Preview',
+      component: Preview
     }
   ]
 })

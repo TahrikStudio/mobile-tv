@@ -86,10 +86,15 @@ export default {
     refresh: function () {
       if (!this.refreshEligible) return
       this.resetEligibility()
+      this.chartData = []
       let _self = this
+      let channelIds = []
       for (let channel of this.channels) {
-        _self.fetchViewCount(channel)
+        if (!channel.online) {
+          channelIds.push(channel.channelId)
+        }
       }
+      _self.fetchViewCount(channelIds)
     },
     updateGraph: function () {
       let graphData = [['Channel', 'Viewers', { role: 'annotation' }, {role: 'style'}]]

@@ -32,12 +32,13 @@ export default {
   data: function () {
     return {
       loaded: false,
-      error: false
+      error: false,
+      isFullScreen: false
     }
   },
   methods: {
     share: function () {
-      let shareMessage = `${this.title} - https://youtu.be/${this.videoId}${Constants.APP_LINK}`
+      let shareMessage = `${this.title} - ${Constants.PREVIEW_LINK}${this.videoId}${Constants.APP_LINK}`
       console.log(shareMessage)
       if (window.plugins && window.plugins.socialsharing) {
         window.plugins.socialsharing.share(shareMessage)
@@ -61,14 +62,14 @@ export default {
       document.removeEventListener('mozfullscreenchange', this.toggleFullScreen)
       document.removeEventListener('fullscreenchange', this.toggleFullScreen)
       document.removeEventListener('MSFullscreenChange', this.toggleFullScreen)
-      document.removeEventListener('pause', this.stopVideo)
+      document.removeEventListener('pause', this.pauseVideo)
     },
     toggleFullScreen: function (event) {
       var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
 
       if (fullscreenElement != null) {
+        this.isFullScreen = true
         screen.orientation.lock('landscape')
-        if (window.plugins) window.plugins.insomnia.keepAwake()
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.hide()
@@ -78,8 +79,8 @@ export default {
           AndroidFullScreen.immersiveMode(this.fullscreenSuccess, this.fullscreenError)
         }
       } else {
+        this.isFullScreen = false
         screen.orientation.lock('portrait')
-        if (window.plugins) window.plugins.insomnia.allowSleepAgain()
         /* global admob */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.admob) admob.banner.show()
@@ -92,6 +93,9 @@ export default {
     },
     stopVideo: function () {
       if (this.player) this.player.stopVideo()
+    },
+    pauseVideo: function () {
+      if (this.player) this.player.pauseVideo()
     },
     playVideo: function () {
       let _self = this
@@ -116,9 +120,12 @@ export default {
         if (event.data === YT.PlayerState.PLAYING) {
           console.log('playing video')
           if (window.plugins) window.plugins.insomnia.keepAwake()
+          if (window.meta.compliance && window.admob) admob.banner.hide()
+          if (_self.title === '') _self.title = _self.player.getVideoData().title
         } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
           console.log('video paused or ended')
           if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+          if (!_self.isFullScreen && window.meta.compliance && window.admob) admob.banner.show()
         }
       }
 
@@ -155,12 +162,13 @@ export default {
     document.addEventListener('mozfullscreenchange', this.toggleFullScreen)
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
-    document.addEventListener('pause', this.stopVideo)
+    document.addEventListener('pause', this.pauseVideo)
     this.playVideo()
   },
   beforeDestroy: function () {
     console.log('destroying..')
     if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+    if (window.meta.compliance && window.admob) admob.banner.show()
   },
   watch: {
     'videoId': function (videoId) {

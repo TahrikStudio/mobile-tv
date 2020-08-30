@@ -17,7 +17,8 @@
     <a class="external" @click="share" v-if="loaded">
       <img src="../assets/meta/share.svg">Share
     </a>
-    <Viewers v-if="videoId && !isFullscreen" :channelId="channel.channelId"></Viewers>
+    <Viewers v-if="videoId && !isFullscreen && playing" :videoId="videoId"></Viewers>
+    <div v-else><br/><br/></div>
     <router-link class="link" :to="{name: 'Videos', params: {categoryId: categoryId, channelId: channelId, live: true}}">
       Latest videos from {{channel.name}}
     </router-link>
@@ -39,7 +40,8 @@ export default {
       error: false,
       videoId: false,
       isFullscreen: false,
-      self: {}
+      self: {},
+      playing: false
     }
   },
   components: {
@@ -65,7 +67,7 @@ export default {
   },
   methods: {
     share: function () {
-      let shareMessage = `Watch ${this.channel.name} Live: https://youtu.be/${this.videoId}${Constants.APP_LINK}`
+      let shareMessage = `Watch ${this.channel.name} Live: ${Constants.PREVIEW_LINK}${this.videoId}${Constants.APP_LINK}`
       console.log(shareMessage)
       if (window.plugins && window.plugins.socialsharing) {
         window.plugins.socialsharing.share(shareMessage)
@@ -90,7 +92,7 @@ export default {
       document.removeEventListener('mozfullscreenchange', this.toggleFullScreen)
       document.removeEventListener('fullscreenchange', this.toggleFullScreen)
       document.removeEventListener('MSFullscreenChange', this.toggleFullScreen)
-      document.removeEventListener('pause', this.stopVideo)
+      document.removeEventListener('pause', this.pauseVideo)
     },
     toggleFullScreen: function (event) {
       var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement
@@ -122,6 +124,9 @@ export default {
     stopVideo: function () {
       if (this.player) this.player.stopVideo()
     },
+    pauseVideo: function () {
+      if (this.player) this.player.pauseVideo()
+    },
     getLiveStream: function () {
       let _self = this
 
@@ -144,9 +149,13 @@ export default {
         if (event.data === YT.PlayerState.PLAYING) {
           console.log('playing video')
           if (window.plugins) window.plugins.insomnia.keepAwake()
+          _self.playing = true
+          if (window.meta.compliance && window.admob) admob.banner.hide()
         } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
           console.log('video paused or ended')
           if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+          _self.playing = false
+          if (!self.isFullScreen && window.meta.compliance && window.admob) admob.banner.show()
         }
       }
 
@@ -230,7 +239,7 @@ export default {
     document.addEventListener('mozfullscreenchange', this.toggleFullScreen)
     document.addEventListener('fullscreenchange', this.toggleFullScreen)
     document.addEventListener('MSFullscreenChange', this.toggleFullScreen)
-    document.addEventListener('pause', this.stopVideo)
+    document.addEventListener('pause', this.pauseVideo)
 
     if (this.channel.channelId) {
       this.getLiveStream()
@@ -238,6 +247,7 @@ export default {
   },
   beforeDestroy: function () {
     if (window.plugins) window.plugins.insomnia.allowSleepAgain()
+    if (window.meta.compliance && window.admob) admob.banner.show()
   },
   watch: {
     'channel.channelId': function (channelId) {

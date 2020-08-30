@@ -11,11 +11,11 @@ import Constants from '../common/Constants.js'
 
 export default {
   name: 'Viewers',
-  props: ['channelId'],
+  props: ['videoId'],
   methods: {
     fetchViewCount: function () {
       let _self = this
-      axios.get(`${Constants.REMOTE}liveCount/${this.channelId}`)
+      axios.get(`${Constants.REMOTE}liveStreamViewer/${this.videoId}`)
         .then(function (response) {
           try {
             _self.count = response.data

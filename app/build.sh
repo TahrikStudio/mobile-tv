@@ -17,9 +17,9 @@ sed -i 's/\/static\/img/\.\.\/img/g' www/static/css/app*.css
 
 export ANDROID_HOME=/home/niyasc/Development
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64
-export PATH=$PATH:/home/niyasc/Apps/gradle-6.3/bin/
-export PATH=$PATH:/home/niyasc/Development/tools
-export PATH=$PATH:/home/niyasc/Development/platform-tools
+export PATH=$PATH:/opt/gradle/gradle-6.6/bin/
+export PATH=$PATH:~/Android/Sdk/tools
+export PATH=$PATH:~/Android/Sdk/platform-tools
 trap interrupted INT
 function interrupted () {
     rm -f platforms/android/release.properties

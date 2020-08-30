@@ -7,12 +7,16 @@
     </div>
     <Video :title="title" :videoId="videoId" v-if="play"/>
     <h3>Latest videos from {{channel.name}}</h3>
-    <div class="channels">
+    <div v-if="error">
+      We could n't load the videos from {{channel.name}}. Please try later.
+    </div>
+    <div class="channels" v-else-if="videos.length">
       <div @click="playVideo(video)" v-bind:key="index" class="channel" v-for="(video, index) in videos">
         <img :src="thumbnail(video)">
         {{video.snippet.title.split('|')[0]}} <br> {{video.snippet.publishedAt.split('T')[0]}}
       </div>
     </div>
+    <Loader v-else />
     <a class="external" :href="'https://www.youtube.com/channel/' + channel.channelId">
       More Videos from {{channel.name}}
     </a>
@@ -23,6 +27,7 @@
 import axios from 'axios'
 import Video from './Video'
 import Constants from '../common/Constants.js'
+import Loader from './Loader'
 
 export default {
   name: 'Category',
@@ -31,11 +36,13 @@ export default {
       play: false,
       videoId: '',
       title: false,
-      videos: []
+      videos: [],
+      error: false
     }
   },
   components: {
-    Video
+    Video,
+    Loader
   },
   methods: {
     playVideo: function (video) {
@@ -58,6 +65,10 @@ export default {
         .then(function (response) {
           let data = response.data
           _this.videos = data.items
+        })
+        .catch(e => {
+          console.log(e)
+          _this.error = true
         })
     }
   },
