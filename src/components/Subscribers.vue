@@ -73,12 +73,8 @@ export default {
     this.chartOptions.title = 'YouTube Subscribers\n' + (new Date()).toLocaleString()
     // this.fetchViewCount()
     console.log('mounted')
-    /* global admob */
-    /* eslint no-undef: ["error", { "typeof": true }] */
-    if (window.admob) {
-      if (CommonUtils.canShowAd()) {
-        admob.interstitial.show()
-      }
+    if (CommonUtils.canShowAd()) {
+      CommonUtils.showInterstitialAd()
     }
     let channelIds = []
     let index = 0

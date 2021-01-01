@@ -121,13 +121,11 @@ export default {
     this.chartOptions.title = 'YouTube Live Viewers\n' + (new Date()).toLocaleString()
     // this.fetchViewCount()
     console.log('mounted')
-    /* global admob */
-    /* eslint no-undef: ["error", { "typeof": true }] */
-    if (window.admob) {
-      if (CommonUtils.canShowAd()) {
-        admob.interstitial.show()
-      }
+
+    if (CommonUtils.canShowAd()) {
+      CommonUtils.showInterstitialAd()
     }
+
     let index = 0
     let channelIds = []
     for (let channel of this.category.channels) {

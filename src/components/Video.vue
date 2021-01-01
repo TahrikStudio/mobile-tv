@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import CommonUtils from '../common/CommonUtils.js'
 import Constants from '../common/Constants.js'
 import Loader from './Loader'
 
@@ -70,9 +71,7 @@ export default {
       if (fullscreenElement != null) {
         this.isFullScreen = true
         screen.orientation.lock('landscape')
-        /* global admob */
-        /* eslint no-undef: ["error", { "typeof": true }] */
-        if (window.admob) admob.banner.hide()
+        CommonUtils.hideBannerAd()
         /* global AndroidFullScreen */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.AndroidFullScreen) {
@@ -81,9 +80,7 @@ export default {
       } else {
         this.isFullScreen = false
         screen.orientation.lock('portrait')
-        /* global admob */
-        /* eslint no-undef: ["error", { "typeof": true }] */
-        if (window.admob) admob.banner.show()
+        CommonUtils.showBannerAd()
         /* global AndroidFullScreen */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.AndroidFullScreen) {
@@ -120,12 +117,10 @@ export default {
         if (event.data === YT.PlayerState.PLAYING) {
           console.log('playing video')
           if (window.plugins) window.plugins.insomnia.keepAwake()
-          if (window.meta.compliance && window.admob) admob.banner.hide()
           if (_self.title === '') _self.title = _self.player.getVideoData().title
         } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
           console.log('video paused or ended')
           if (window.plugins) window.plugins.insomnia.allowSleepAgain()
-          if (!_self.isFullScreen && window.meta.compliance && window.admob) admob.banner.show()
         }
       }
 
@@ -168,7 +163,6 @@ export default {
   beforeDestroy: function () {
     console.log('destroying..')
     if (window.plugins) window.plugins.insomnia.allowSleepAgain()
-    if (window.meta.compliance && window.admob) admob.banner.show()
   },
   watch: {
     'videoId': function (videoId) {

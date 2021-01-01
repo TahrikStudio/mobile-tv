@@ -31,6 +31,7 @@ import Constants from '../common/Constants.js'
 import axios from 'axios'
 import Viewers from './Viewers'
 import Loader from './Loader'
+import CommonUtils from '../common/CommonUtils.js'
 
 export default {
   name: 'Channel',
@@ -76,6 +77,10 @@ export default {
     fullscreenSuccess: function () {
       console.log('fullscreen success')
     },
+    fullscreenSuccessclose: function () {
+      console.log('fullscreen success -- ')
+      CommonUtils.showBannerAd()
+    },
     fullscreenError: function (error) {
       console.log('fullscreen error' + error)
     },
@@ -100,9 +105,7 @@ export default {
       if (fullscreenElement != null) {
         this.isFullscreen = true
         screen.orientation.lock('landscape')
-        /* global admob */
-        /* eslint no-undef: ["error", { "typeof": true }] */
-        if (window.admob) admob.banner.hide()
+        CommonUtils.hideBannerAd()
         /* global AndroidFullScreen */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.AndroidFullScreen) {
@@ -111,13 +114,10 @@ export default {
       } else {
         this.isFullscreen = false
         screen.orientation.lock('portrait')
-        /* global admob */
-        /* eslint no-undef: ["error", { "typeof": true }] */
-        if (window.admob) admob.banner.show()
         /* global AndroidFullScreen */
         /* eslint no-undef: ["error", { "typeof": true }] */
         if (window.AndroidFullScreen) {
-          AndroidFullScreen.showSystemUI(this.fullscreenSuccess, this.fullscreenError)
+          AndroidFullScreen.showSystemUI(this.fullscreenSuccessclose, this.fullscreenError)
         }
       }
     },
@@ -150,12 +150,10 @@ export default {
           console.log('playing video')
           if (window.plugins) window.plugins.insomnia.keepAwake()
           _self.playing = true
-          if (window.meta.compliance && window.admob) admob.banner.hide()
         } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
           console.log('video paused or ended')
           if (window.plugins) window.plugins.insomnia.allowSleepAgain()
           _self.playing = false
-          if (!self.isFullScreen && window.meta.compliance && window.admob) admob.banner.show()
         }
       }
 
@@ -247,7 +245,6 @@ export default {
   },
   beforeDestroy: function () {
     if (window.plugins) window.plugins.insomnia.allowSleepAgain()
-    if (window.meta.compliance && window.admob) admob.banner.show()
   },
   watch: {
     'channel.channelId': function (channelId) {

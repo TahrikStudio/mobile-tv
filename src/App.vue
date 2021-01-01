@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id='app'>
     <router-view/>
-    <Notification v-if="notifications.length" :notification="notifications[0]" @closeApp="closeApp" @proceed="notifications = []"/>
+    <Notification v-if='notifications.length' :notification='notifications[0]' @closeApp='closeApp' @proceed='notifications = []'/>
   </div>
 </template>
 
@@ -45,34 +45,7 @@ export default {
       // define backbutton functionality
       document.addEventListener('backbutton', this.onBackKeyDown, false)
 
-      // Integrate AdMobAds
-      /* global admob */
-      /* eslint no-undef: ["error", { "typeof": true }] */
-      if (typeof admob !== 'undefined') {
-        setTimeout(function () {
-          admob.banner.config({
-            id: 'ca-app-pub-6380671811722843/7999087406',
-            isTesting: false,
-            autoShow: false
-          })
-          admob.banner.prepare()
-
-          admob.interstitial.config({
-            id: 'ca-app-pub-6380671811722843/4584986697',
-            autoShow: false
-          })
-          admob.interstitial.prepare()
-
-          document.addEventListener('admob.banner.events.LOAD', function () {
-            admob.banner.show()
-          })
-
-          document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
-            admob.interstitial.prepare()
-            CommonUtils.setAdShown()
-          })
-        }, 500)
-      }
+      CommonUtils.showBannerAd()
 
       initializeRating()
 

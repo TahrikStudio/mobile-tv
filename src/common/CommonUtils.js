@@ -20,5 +20,28 @@ export default {
   },
   getLocalData (key) {
     return window.localStorage.getItem(`${Constants.APP_STORAGE_KEY}-${key}`)
+  },
+  showBannerAd () {
+    if (!window.cordova) return
+    var options = {
+      bannerid: '931260990742693_931271424074983',
+      isTesting: false
+    }
+    window.cordova.plugins.codeplayfacebookads.showBannerAds(options, result => {
+      console.log('Ad shown succesfully')
+    }, result => {
+      console.log('Failed to show ad ' + result)
+    })
+  },
+  hideBannerAd () {
+    if (!window.cordova) return
+    window.cordova.plugins.codeplayfacebookads.hideBannerAds('', result => {
+      console.log('Ad hidden succesfully')
+    }, result => {
+      console.log('Failed to hide banner ad')
+    })
+  },
+  showInterstitialAd () {
+    // Do nothing
   }
 }

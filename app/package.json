@@ -11,8 +11,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova": "^9.0.0",
-    "cordova-admob-sdk": "^0.21.0",
-    "cordova-plugin-admob-free": "^0.24.0",
     "cordova-plugin-androidx-adapter": "^1.1.0",
     "cordova-plugin-apprate": "^1.4.0",
     "cordova-plugin-buildinfo": "^2.0.2",
@@ -25,7 +23,6 @@
     "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.3",
     "cordova-plugin-whitelist": "^1.3.3",
-    "cordova-promise-polyfill": "0.0.2",
     "es6-promise-plugin": "^4.2.2"
   },
   "cordova": {
@@ -33,9 +30,6 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-insomnia": {},
-      "cordova-plugin-admob-free": {
-        "ADMOB_APP_ID": "ca-app-pub-6380671811722843~2199965818"
-      },
       "cordova-plugin-fullscreen": {},
       "cordova-plugin-apprate": {},
       "cordova-plugin-buildinfo": {},
@@ -44,7 +38,8 @@
       "com.darktalker.cordova.screenshot": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-androidx-adapter": {},
-      "cordova-plugin-deeplinks": {}
+      "cordova-plugin-deeplinks": {},
+      "cordova-plugin-codeplay-facebookads-free": {}
     },
     "platforms": [
       "android"
@@ -53,6 +48,7 @@
   "devDependencies": {
     "com.darktalker.cordova.screenshot": "git+https://github.com/gitawego/cordova-screenshot.git",
     "cordova-android": "^9.0.0",
+    "cordova-plugin-codeplay-facebookads-free": "^0.1.5",
     "cordova-plugin-deeplinks": "^1.1.1",
     "cordova-plugin-insomnia": "git+https://github.com/EddyVerbruggen/Insomnia-PhoneGap-Plugin.git",
     "cordova-plugin-x-socialsharing": "git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git"
